@@ -39,6 +39,12 @@ export default {
 		return dispatch => {
 			return dispatch(TurboClient.currentUser(constants.CURRENT_USER_RECEIVED))
 		}
+	},
+
+	emailTemplateCreator: params => {
+		return dispatch => {
+			return dispatch(TurboClient.postRequest('emailTemplates',params,constants.NewEmailTemplate))
+		}
 	}
 	
 }

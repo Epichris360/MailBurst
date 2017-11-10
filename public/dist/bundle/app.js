@@ -7966,7 +7966,9 @@ exports.default = {
 	USERS_RECEIVED: 'USERS_RECEIVED',
 	USER_CREATED: 'USER_CREATED',
 	USER_LOGGED_IN: 'USER_LOGGED_IN',
-	CURRENT_USER_RECEIVED: 'CURRENT_USER_RECEIVED'
+	CURRENT_USER_RECEIVED: 'CURRENT_USER_RECEIVED',
+
+	NewEmailTemplate: 'NewEmailTemplate'
 
 };
 
@@ -28061,7 +28063,7 @@ var _Users = __webpack_require__(80);
 
 var _Users2 = _interopRequireDefault(_Users);
 
-var _AutomatedEmailCreator = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./AutomatedEmailCreator\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _AutomatedEmailCreator = __webpack_require__(101);
 
 var _AutomatedEmailCreator2 = _interopRequireDefault(_AutomatedEmailCreator);
 
@@ -28388,6 +28390,12 @@ exports.default = {
 	currentUser: function currentUser() {
 		return function (dispatch) {
 			return dispatch(_utils.TurboClient.currentUser(_constants2.default.CURRENT_USER_RECEIVED));
+		};
+	},
+
+	emailTemplateCreator: function emailTemplateCreator(params) {
+		return function (dispatch) {
+			return dispatch(_utils.TurboClient.postRequest('emailTemplates', params, _constants2.default.NewEmailTemplate));
 		};
 	}
 
@@ -30000,6 +30008,231 @@ var Promise=__webpack_require__(2),superagent=__webpack_require__(1),TURBO_VECTO
 /***/ (function(module, exports) {
 
 module.exports = {"name":"turbomail","version":"0.0.0","server":false,"private":true,"scripts":{"clean":"rm -rf ./public/dist","build":"npm run clean && NODE_ENV=production webpack && gulp prod","postinstall":"npm run build"},"dependencies":{"bluebird":"latest","debug":"latest","dotenv":"latest","moment":"latest","react":"latest","react-bootstrap":"latest","react-dom":"latest","react-dropzone":"latest","react-redux":"latest","react-time":"latest","redux":"latest","redux-thunk":"latest","superagent":"latest","turbo360":"latest","vertex360":"latest"},"devDependencies":{"babel-core":"latest","babel-loader":"latest","babel-preset-es2015":"latest","babel-preset-react":"latest","json-loader":"latest","gulp":"latest","gulp-autoprefixer":"latest","gulp-6to5":"latest","gulp-concat":"latest","gulp-less":"latest","gulp-minify-css":"latest","gulp-rename":"latest","gulp-uglify":"latest","chai":"latest","chai-http":"latest","nodemon":"latest","mocha":"latest","mocha-jscs":"latest","mocha-jshint":"latest","rimraf":"latest","webpack":"latest"},"app":"5a05eabf2d98b70012f56ad6","deploy":["."],"format":"vertex"}
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(26);
+
+var _actions = __webpack_require__(81);
+
+var _actions2 = _interopRequireDefault(_actions);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AutomatedEmailCreator = function (_Component) {
+    _inherits(AutomatedEmailCreator, _Component);
+
+    function AutomatedEmailCreator(props) {
+        _classCallCheck(this, AutomatedEmailCreator);
+
+        var _this = _possibleConstructorReturn(this, (AutomatedEmailCreator.__proto__ || Object.getPrototypeOf(AutomatedEmailCreator)).call(this, props));
+
+        _this.state = {
+            emailTitle: '', emailBody: '', variablesComma: '', turboApiKey: ''
+        };
+        return _this;
+    }
+
+    _createClass(AutomatedEmailCreator, [{
+        key: 'emailprototype',
+        value: function emailprototype() {
+            /*
+                format will now be *$name*
+                have person add standard names customerName, companyName, promoCode
+                split array by " ", then replace each of these using a loop. < should be provided by 
+                person in the get request >. then email is sent.
+                promocode can be persons `${customerName}-${rand-alphanumberic}` its done.
+                need two cronjob/ vectors
+                - one for sending emails everyday
+                -another for scrapping 2 day old promocodes
+                -another for removing promocodes after their use // should be done by person?
+                -another for generating a promocode // could generate a standar promocode collection
+                 these could be grouped together
+                https://stackoverflow.com/questions/5613834/convert-string-to-variable-name-in-javascript
+            */
+        }
+    }, {
+        key: 'formatAndSendEmail',
+        value: function formatAndSendEmail() {
+            var _state = this.state,
+                emailTitle = _state.emailTitle,
+                emailBody = _state.emailBody,
+                variablesComma = _state.variablesComma,
+                turboApiKey = _state.turboApiKey;
+
+            if (variablesComma.split(' ') > 1) {
+                console.log('error! there was a space');
+                return;
+            }
+            if (this.checkVarsAndBody(emailBody, variablesComma)) {
+                console.log('something wrong');
+                return;
+            }
+            if (emailTitle == '' && emailBody == '' && variablesComma == '' && turboApiKey == '') {
+                console.log('you forgot something!');
+                //this.setState(error:true, errorMessage:'Somethings Empty!')
+                return;
+            }
+            console.log('everything works so far');
+            var emailTemplate = {
+                emailTitle: emailTitle, emailBody: emailBody, variablesComma: variablesComma, turboApiKey: turboApiKey
+            };
+            this.props.emailTemplateCreator(emailTemplate).then(function (data) {
+                console.log('email: just created', data);
+                return;
+            }).catch(function (err) {
+                console.log('err', err.message);
+                return;
+            });
+        }
+    }, {
+        key: 'checkVarsAndBody',
+        value: function checkVarsAndBody(emailBody, variablesComma) {
+            //let tasksIndex = projectChange.tasks.map( task => task.task_id ).indexOf( t.task_id )
+            var emailSplit = emailBody.split('*');
+            var varSplit = variablesComma.split(',');
+            var howManyVarsFound = 0;
+            for (var x = 0; x < varSplit.length; x++) {
+                var indexNum = emailSplit.map(function (emailblock) {
+                    return emailblock;
+                }).indexOf('$' + varSplit[x]);
+                if (indexNum >= 0) {
+                    howManyVarsFound++;
+                }
+            }
+            if (varSplit.length == howManyVarsFound) {
+                //falsifies the if statment from where the request comes from. so that the parent
+                //function can continue
+                return false;
+            } else {
+                //validates the if statement and exists the parent function
+                return true;
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'container' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-md-12 col-sm-12 col-xs-12' },
+                        _react2.default.createElement(
+                            'h1',
+                            null,
+                            'Email for Customers Who Signed Up But Didn\'t Convert:'
+                        ),
+                        _react2.default.createElement('hr', null),
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: '' },
+                            'Title for the Email:'
+                        ),
+                        _react2.default.createElement('input', { type: 'text', className: 'form-control',
+                            placeholder: 'Title for the Email!',
+                            required: true,
+                            onClick: function onClick(e) {
+                                return _this2.setState({ emailTitle: e.target.value });
+                            }
+                        }),
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: '' },
+                            'Turbo API Key:'
+                        ),
+                        _react2.default.createElement('input', { type: 'text', className: 'form-control',
+                            required: true,
+                            onChange: function onChange(e) {
+                                return _this2.setState({ turboApiKey: e.target.value });
+                            },
+                            placeholder: 'Turbo API key please'
+                        }),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: '' },
+                            'Body for the Email:'
+                        ),
+                        _react2.default.createElement('textarea', { cols: '30', rows: '10', className: 'form-control',
+                            required: true,
+                            placeholder: 'So format your *$variables* like this!!. So lets say you want to add a customers *$name* and maybe a discountcode *$code*. you know to increase convesion or something',
+                            onChange: function onChange(e) {
+                                return _this2.setState({ emailBody: e.target.value });
+                            }
+                        }),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement(
+                            'label',
+                            { htmlFor: '' },
+                            'Write your vars here. Remember that your varibles ',
+                            _react2.default.createElement(
+                                'b',
+                                null,
+                                'Identical'
+                            ),
+                            ' to the ones in the body. Seperate them by commas no spaces!:  '
+                        ),
+                        _react2.default.createElement('input', { type: 'text', className: 'form-control',
+                            required: true,
+                            onChange: function onChange(e) {
+                                return _this2.setState({ variablesComma: e.target.value });
+                            },
+                            placeholder: 'seperate your variables by commas'
+                        }),
+                        _react2.default.createElement('br', null),
+                        _react2.default.createElement(
+                            'button',
+                            { onClick: this.formatAndSendEmail.bind(this),
+                                className: 'btn btn-success btn-lg pull-right' },
+                            'Create!'
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return AutomatedEmailCreator;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+    return {};
+};
+var propsToState = function propsToState(dispatch) {
+    return {
+        emailTemplateCreator: function emailTemplateCreator(params) {
+            return dispatch(_actions2.default.emailTemplateCreator(params));
+        }
+    };
+};
+exports.default = (0, _reactRedux.connect)(mapStateToProps, propsToState)(AutomatedEmailCreator);
 
 /***/ })
 ],[34]);
