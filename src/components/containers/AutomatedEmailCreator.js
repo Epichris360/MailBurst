@@ -6,7 +6,8 @@ class AutomatedEmailCreator extends Component{
     constructor(props){
         super(props)
         this.state = {
-            emailTitle:'',emailBody:'',variablesComma:'', turboApiKey:''
+            emailTitle:'',emailBody:'',variablesComma:'', turboApiKey:'',
+            error:false, errorMessage:''
         }
     }
     emailprototype(){

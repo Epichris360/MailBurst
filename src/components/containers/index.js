@@ -7,9 +7,13 @@
 
 import Users from './Users'
 import AutomatedEmailCreator from './AutomatedEmailCreator'
+import SignIn from './SignIn'
+import SignUp from './SignUp'
+import NavBar from './NavBar'
+
 
 export {
 
-	Users, AutomatedEmailCreator
+	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar
 	
 }

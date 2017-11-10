@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import store from './stores'
 import { Provider } from 'react-redux'
 import Intro from './components/Intro'
-import { AutomatedEmailCreator } from './components/containers'
+import { Switch, BrowserRouter as Router, Route  } from 'react-router-dom'
+import { AutomatedEmailCreator, SignIn, SignUp, NavBar } from './components/containers'
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
 	This is the entry point of the React app with Redux
@@ -16,7 +17,18 @@ import { AutomatedEmailCreator } from './components/containers'
 
 const app = (
 	<Provider store={store.configure(null)}>
-		<AutomatedEmailCreator />
+		<Router>
+			<div >
+				<NavBar />
+				<div>
+					<Switch>
+						<Route exact path='/' 	     component={AutomatedEmailCreator} />
+						<Route path="/signin"        component={SignIn} />
+						<Route path="/signup"        component={SignUp}/>
+					</Switch>
+				</div>
+			</div>
+		</Router>
 	</Provider>
 )
 
