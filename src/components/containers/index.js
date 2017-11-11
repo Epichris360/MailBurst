@@ -12,9 +12,10 @@ import SignUp 	from './SignUp'
 import NavBar   from './NavBar'
 import MainPage from './MainPage'
 import MyEmailsList from './MyEmailsList'
+import EmaiTemplateShow from './EmaiTemplateShow'
 
 export {
 
-	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, MyEmailsList
+	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, MyEmailsList, EmaiTemplateShow
 	
 }

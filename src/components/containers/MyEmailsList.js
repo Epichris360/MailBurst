@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import actions from '../../actions'
+import {connect}            from 'react-redux'
+import actions              from '../../actions'
+import { Link }             from 'react-router-dom'
 
 class MyEmailsList extends Component{
     constructor(props){
         super(props)
         this.state = {
-            tempArr:[], private: false
+            tempArr:[], private: false, showModal:false, tempToShowInModal:null
         }
     }
     componentDidMount(){
@@ -44,6 +45,16 @@ class MyEmailsList extends Component{
             //was false as in now switching from private to public
             this.setState({tempArr: filtered, private:true})
         }
+        return
+    }
+    modalSettings(temp){
+        this.setState({showModal: true, tempToShowInModal: temp})
+    }
+    closeModal(){
+        this.setState({showModal:false})
+    }
+    saveEmail(){
+
     }
     render(){
         //fix public/private setting
@@ -54,13 +65,13 @@ class MyEmailsList extends Component{
                     <hr/>
                     <div>
                     {
-                        this.state.private ?  
-                            <button className="btn btn-success col-md-12 col-xs-12" 
-                                onClick={ this.switch.bind(this,'private') }
-                            >Switch to Private Email Templates</button> : 
+                        this.state.private ? 
                             <button className="btn btn-success col-md-12 col-xs-12" 
                                 onClick={ this.switch.bind(this,'public') }
-                            >Switch to Public Email Templates</button> 
+                            >Switch to Public Email Templates</button> :
+                            <button className="btn btn-success col-md-12 col-xs-12" 
+                                onClick={ this.switch.bind(this,'private') }
+                            >Switch to Private Email Templates</button> 
                     }
                     </div>
                     <br/>
@@ -68,7 +79,13 @@ class MyEmailsList extends Component{
                         {
                             this.state.tempArr.map( (temp,i) => {
                                 return(
-                                    <li className="list-group-item" key={i}>{temp.emailTitle}</li>
+                                    <li className="list-group-item" key={i}>
+                                        {temp.emailTitle}
+                                        
+                                        <Link className="btn btn-success btn-xs pull-right" to={`/email/${temp.email_id}`}> 
+                                            Docs And See
+                                        </Link>
+                                    </li>
                                 )
                             })
                         }
