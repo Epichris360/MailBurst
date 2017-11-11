@@ -9,10 +9,10 @@ export default (state = initialState, action) => {
         case constants.NewEmailTemplate:
             newState = state
             newState.push(action.data)
-			return 
+			return newState
 
 		case constants.GET_EMAILS:
-            newState = [...state, action.data]
+            newState = [...state, ...action.data]
             return newState
 
 		default:

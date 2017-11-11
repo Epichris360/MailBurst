@@ -20,7 +20,7 @@ class SignIn extends Component{
         this.setState({submitted:true})
         this.props.signIn({username:username,password:password})
         .then(response => {
-            this.props.history.push('/projects')
+            this.props.history.push('/emails-list')
             return
         })
         .catch(err => {

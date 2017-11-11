@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { connect }          from 'react-redux'
 import actions              from '../../actions'
 import DangerAlert          from './DangerAlert'
+import { v4 }               from 'uuid'
 
 class AutomatedEmailCreator extends Component{
     constructor(props){
         super(props)
         this.state = {
             emailTitle:'',emailBody:'',variablesComma:'', turboApiKey:'',
-            error:false, errorMessage:''
+            error:false, errorMessage:'', category:'private'
         }
     }
     emailprototype(){
@@ -29,7 +30,7 @@ class AutomatedEmailCreator extends Component{
         */
     }
     formatAndSendEmail(){
-        const { emailTitle, emailBody, variablesComma, turboApiKey } = this.state
+        const { emailTitle, emailBody, variablesComma, turboApiKey, category } = this.state
         if( variablesComma.split(' ') > 1 ){
             this.setState({error:true, errorMessage:'error! there was a space in your variables!'})
             return
@@ -44,9 +45,9 @@ class AutomatedEmailCreator extends Component{
             return 
         }
         const emailTemplate = {
+            email_id:v4(),
             emailTitle, emailBody, variablesComma, turboApiKey, 
-            user_id: this.props.user.id, user_email:this.props.user.email, category:'public'
-                                                //private and public using option
+            user_id: this.props.user.id, user_email: this.props.user.email, category
         }
         this.props.emailTemplateCreator(emailTemplate)
         .then(data => {
@@ -115,6 +116,15 @@ class AutomatedEmailCreator extends Component{
                             placeholder="seperate your variables by commas"
                         />
                         <br/>
+                        {
+                            this.props.user.role == "admin" ? 
+                                <select className="btn btn-default" onChange={e => this.setState({category: e .target.value}) }>
+                                    <option value="public">Public</option>
+                                    <option value="private">Private</option>
+                                </select> : null
+                        }
+                        
+                        
                         <button onClick={ this.formatAndSendEmail.bind(this) }
                         className="btn btn-success btn-lg pull-right">
                             Create It!
