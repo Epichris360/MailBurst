@@ -13,6 +13,7 @@ export default {
 	CURRENT_USER_RECEIVED: 	'CURRENT_USER_RECEIVED',
 
 
-	NewEmailTemplate:		'NewEmailTemplate'
+	NewEmailTemplate:		'NewEmailTemplate',
+	GET_EMAILS:				'GET_EMAILS'
 
 }

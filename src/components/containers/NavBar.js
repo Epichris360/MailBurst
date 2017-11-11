@@ -31,20 +31,18 @@ class NavBar extends Component{
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
-                        {/*
+                        {
                             this.props.user.id != '' ?  
                             <Nav>
-                                <NavDropdown eventKey={1} title="Project Options" id="basic-nav-dropdown">
-                                    <LinkContainer to="/projects">
-                                        <MenuItem eventKey={1.1}>Projects</MenuItem>
+                                <NavDropdown eventKey={1} title="Emails Options" id="basic-nav-dropdown">
+                                    <LinkContainer to="/email-creator">
+                                        <MenuItem eventKey={1.1}>Email Creator</MenuItem>
                                     </LinkContainer>
-                                    <LinkContainer to="/new-project">
-                                        <MenuItem eventKey={1.2} href="/new-project">New Project</MenuItem>
+                                    <LinkContainer to="/emails-list">
+                                        <MenuItem eventKey={1.2} >Email List</MenuItem>
                                     </LinkContainer>
                                 </NavDropdown>
                             </Nav> : null
-                            change this!!
-                            */
                         }
                         {
                             this.props.user.id == '' ?

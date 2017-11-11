@@ -45,6 +45,12 @@ export default {
 		return dispatch => {
 			return dispatch(TurboClient.postRequest('emailTemplates',params,constants.NewEmailTemplate))
 		}
+	},
+
+	getEmails: params => {
+		return dispatch => {
+			return dispatch(TurboClient.getRequest('emailTemplates',params,constants.GET_EMAILS))
+		}
 	}
 	
 }

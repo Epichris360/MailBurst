@@ -5,9 +5,10 @@
 
 
 import userReducer from './userReducer'
+import emailsReducer from './emailsReducer'
 
 export {
 	
-	userReducer
+	userReducer, emailsReducer
 	
 }

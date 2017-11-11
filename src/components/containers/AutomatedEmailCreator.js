@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect }          from 'react-redux'
 import actions              from '../../actions'
+import DangerAlert          from './DangerAlert'
 
 class AutomatedEmailCreator extends Component{
     constructor(props){
@@ -30,21 +31,22 @@ class AutomatedEmailCreator extends Component{
     formatAndSendEmail(){
         const { emailTitle, emailBody, variablesComma, turboApiKey } = this.state
         if( variablesComma.split(' ') > 1 ){
-            console.log('error! there was a space')
+            this.setState({error:true, errorMessage:'error! there was a space in your variables!'})
             return
         }
         if(this.checkVarsAndBody(emailBody, variablesComma)){
             console.log('something wrong')
+            this.setState({error: true, errorMessage:'Amount of variables in email body and variables input dont match!'})
             return 
         }
         if( emailTitle == '' && emailBody == '' && variablesComma == '' && turboApiKey == '' ){
-            console.log('you forgot something!')
-            //this.setState(error:true, errorMessage:'Somethings Empty!')
+            this.setState({error:true, errorMessage:'Somethings Empty!'})
             return 
         }
-        console.log('everything works so far')
         const emailTemplate = {
-            emailTitle, emailBody, variablesComma, turboApiKey
+            emailTitle, emailBody, variablesComma, turboApiKey, 
+            user_id: this.props.user.id, user_email:this.props.user.email, category:'public'
+                                                //private and public using option
         }
         this.props.emailTemplateCreator(emailTemplate)
         .then(data => {
@@ -59,7 +61,6 @@ class AutomatedEmailCreator extends Component{
 
     }
     checkVarsAndBody(emailBody, variablesComma){
-        //let tasksIndex = projectChange.tasks.map( task => task.task_id ).indexOf( t.task_id )
         let emailSplit = emailBody.split('*')
         let varSplit   = variablesComma.split(',')
         let howManyVarsFound = 0
@@ -83,13 +84,14 @@ class AutomatedEmailCreator extends Component{
             <div className="container" >
                 <div className="row" >
                     <div className="col-md-12 col-sm-12 col-xs-12">
+                        <DangerAlert error={this.state.error} errorMessage={this.state.errorMessage} />
                         <h1>Email for Customers Who Signed Up But Didn't Convert:</h1>
                         <hr/>
                         <label htmlFor="">Title for the Email:</label>
                         <input type="text" className="form-control" 
                             placeholder="Title for the Email!"
                             required={true}
-                            onClick={ e => this.setState({ emailTitle: e.target.value }) }
+                            onChange={ e => this.setState({ emailTitle: e.target.value }) }
                         />
                         <label htmlFor="">Turbo API Key:</label>
                         <input type="text" className="form-control" 
@@ -115,7 +117,7 @@ class AutomatedEmailCreator extends Component{
                         <br/>
                         <button onClick={ this.formatAndSendEmail.bind(this) }
                         className="btn btn-success btn-lg pull-right">
-                            Create!
+                            Create It!
                         </button>
                     </div>
                 </div>
@@ -125,8 +127,9 @@ class AutomatedEmailCreator extends Component{
 }
 
 const mapStateToProps = state => {
+    const { user } = state
     return{
-
+        user
     }
 }
 const propsToState = dispatch => {
