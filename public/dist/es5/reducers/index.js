@@ -10,7 +10,10 @@ var _interopRequire = function (obj) { return obj && obj.__esModule ? obj["defau
 
 var userReducer = _interopRequire(require("./userReducer"));
 
+var emailsReducer = _interopRequire(require("./emailsReducer"));
+
 exports.userReducer = userReducer;
+exports.emailsReducer = emailsReducer;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });

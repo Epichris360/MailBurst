@@ -45,6 +45,18 @@ module.exports = {
 		return function (dispatch) {
 			return dispatch(TurboClient.currentUser(constants.CURRENT_USER_RECEIVED));
 		};
+	},
+
+	emailTemplateCreator: function (params) {
+		return function (dispatch) {
+			return dispatch(TurboClient.postRequest("emailTemplates", params, constants.NewEmailTemplate));
+		};
+	},
+
+	getEmails: function (params) {
+		return function (dispatch) {
+			return dispatch(TurboClient.getRequest("emailTemplates", params, constants.GET_EMAILS));
+		};
 	}
 
 };

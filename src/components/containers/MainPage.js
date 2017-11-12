@@ -5,12 +5,16 @@ class MainPage extends Component{
         return(
             <div className="row" >
                 <div style={bgimg}>
+                    
                     <div>
                         <img style={img} src="https://images.unsplash.com/photo-1504871632430-520be05a7c1d?auto=format&fit=crop&w=1351&q=60&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D" alt=""/>
                     </div>
+
                     <div style={caption} >
-                        <div className="col-md-11 col-sm-11 col-xs-12 mx-auto">
-                            <span style={border}>Got Mail?</span>
+                        <div className="col-md-10 col-sm-10 col-xs-12 mx-auto">
+                            <div className="col-lg-10 mx-auto" >
+                                <h1><strong style={{color:'white', outline:'black'}} >MailMeteor</strong></h1>
+                            </div>
                         </div>
                     </div>
 

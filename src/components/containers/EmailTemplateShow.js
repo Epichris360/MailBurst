@@ -6,7 +6,7 @@ import JsAxios from './JsAxios'
 import JsSuperAgent from './JsSuperAgent'
 
 
-class EmaiTemplateShow extends Component{
+class EmailTemplateShow extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -60,7 +60,7 @@ class EmaiTemplateShow extends Component{
                             <div className="col-md-10 col-sm-12 col-xs-12">
                                 <hr/>
                                 <h3>Examples of calling the Api!</h3>
-                                <span>Note: examples only avaiable in Javascript, more coming soon!</span>
+                                <span>Note: examples only available in Javascript, more coming soon!</span>
                                 <br/>
                                 <span>NO API KEY NECESSARY FOR NOW!</span>
                             </div>
@@ -89,4 +89,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps,null)(EmaiTemplateShow)
+export default connect(mapStateToProps,null)(EmailTemplateShow)

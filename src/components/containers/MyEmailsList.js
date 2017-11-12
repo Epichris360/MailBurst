@@ -2,15 +2,21 @@ import React, { Component } from 'react'
 import {connect}            from 'react-redux'
 import actions              from '../../actions'
 import { Link }             from 'react-router-dom'
+import Loader               from './Loader'
 
 class MyEmailsList extends Component{
     constructor(props){
         super(props)
         this.state = {
-            tempArr:[], private: false, showModal:false, tempToShowInModal:null
+            tempArr:[], private: true, showModal:false, tempToShowInModal:null, loading: true
         }
     }
     componentDidMount(){
+        if(this.props.emails.length > 0){
+            const filtered = this.props.emails.filter( email => email.category == 'private' )
+            this.setState({tempArr: filtered, loading: false})
+            return
+        }
         this.props.getEmails({user_id: this.props.user.id})
         .then(data => {
             //gets customers private email templates
@@ -25,7 +31,7 @@ class MyEmailsList extends Component{
             .then( () => {
                 //filters for only private email templates
                 const filtered = this.props.emails.filter( email => email.category == 'private' )
-                this.setState({tempArr: filtered})
+                this.setState({tempArr: filtered, loading: false})
                 return
             })
         })
@@ -60,37 +66,40 @@ class MyEmailsList extends Component{
         //fix public/private setting
         return(
             <div className="container" >
-                <div className="row" >
-                    <h1>My Emails List: {this.state.private ? 'Private' : 'Public!'}</h1>
-                    <hr/>
-                    <div>
-                    {
-                        this.state.private ? 
-                            <button className="btn btn-success col-md-12 col-xs-12" 
-                                onClick={ this.switch.bind(this,'public') }
-                            >Switch to Public Email Templates</button> :
-                            <button className="btn btn-success col-md-12 col-xs-12" 
-                                onClick={ this.switch.bind(this,'private') }
-                            >Switch to Private Email Templates</button> 
-                    }
-                    </div>
-                    <br/>
-                    <ul className="list-group" style={{marginTop:'30px'}} >
+                {
+                    this.state.loading ? <Loader /> : 
+                    <div className="row" >
+                        <h1>My Emails List: {this.state.private ? 'Private' : 'Public!'}</h1>
+                        <hr/>
+                        <div>
                         {
-                            this.state.tempArr.map( (temp,i) => {
-                                return(
-                                    <li className="list-group-item" key={i}>
-                                        {temp.emailTitle}
-                                        
-                                        <Link className="btn btn-success btn-xs pull-right" to={`/email/${temp.email_id}`}> 
-                                            Docs And See
-                                        </Link>
-                                    </li>
-                                )
-                            })
+                            this.state.private ? 
+                                <button className="btn btn-success col-md-12 col-xs-12" 
+                                    onClick={ this.switch.bind(this,'public') }
+                                >Switch to Public Email Templates</button> :
+                                <button className="btn btn-success col-md-12 col-xs-12" 
+                                    onClick={ this.switch.bind(this,'private') }
+                                >Switch to Private Email Templates</button> 
                         }
-                    </ul>
-                </div>
+                        </div>
+                        <br/>
+                        <ul className="list-group" style={{marginTop:'30px'}} >
+                            {
+                                this.state.tempArr.map( (temp,i) => {
+                                    return(
+                                        <li className="list-group-item" key={i}>
+                                            <b>Email Title:</b>{` ${temp.emailTitle.substr(0,30)}...`}
+                                            
+                                            <Link className="btn btn-success btn-xs pull-right" to={`/email/${temp.email_id}`}> 
+                                                Docs And See
+                                            </Link>
+                                        </li>
+                                    )
+                                })
+                            }
+                        </ul>
+                    </div>
+                }
             </div>
         )
     }

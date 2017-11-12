@@ -111,6 +111,23 @@ var login = function (credentials, actionType) {
 	};
 };
 
+var logout = function (actionType) {
+	return function (dispatch) {
+		return turbo({ site_id: APP_ID }).logout().then(function (data) {
+			if (actionType != null) {
+				dispatch({
+					type: actionType,
+					data: data
+				});
+			}
+
+			return data;
+		})["catch"](function (err) {
+			throw err;
+		});
+	};
+};
+
 var currentUser = function (actionType) {
 	return function (dispatch) {
 		return turbo({ site_id: APP_ID }).currentUser().then(function (data) {
@@ -142,6 +159,7 @@ module.exports = {
 	deleteRequest: deleteRequest,
 	createUser: createUser,
 	login: login,
+	logout: logout,
 	currentUser: currentUser,
 	uploadFile: uploadFile
 

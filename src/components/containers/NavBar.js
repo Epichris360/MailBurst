@@ -26,7 +26,7 @@ class NavBar extends Component{
                 <Navbar inverse collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <Link className="navbar-brand" to="/">MailBurst</Link>
+                            <Link className="navbar-brand" to="/">MailMeteor</Link>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
