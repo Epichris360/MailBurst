@@ -6,23 +6,24 @@ class JsAxios extends Component{
             <div className="container" >
                 <div className="row" style={{marginTop:'20px'}} >
                     <div className="col-md-5 col-sm-5 col-xs-12" style={{padding:'10px'}} >
-                        {`axios.get('/vectorAddress?', {`} <br/>
-                            &nbsp;&nbsp;{`params: {`} <br/>
-                            <span>&nbsp;&nbsp;&nbsp;{`'email_id: ${this.props.email.email_id}',`}</span> <br/>
-                            <span>&nbsp;&nbsp;&nbsp;{`'to: awesomecustomer@something.com',`}</span> <br/>
-                            <span>&nbsp;&nbsp;&nbsp;{`'from: unpaidintern@bigstartup.com',`}</span>
-                            {
-                                
+                        {`const query = {`} <br/>
+                            &nbsp;&nbsp;&nbsp;{`'email_id': '${this.props.email.email_id},'`} <br/>
+                            &nbsp;&nbsp;&nbsp;{`'to': 'awesomecustomer@something.com',`} <br/>
+                            &nbsp;&nbsp;&nbsp;{`'from': 'unpaidintern@bigstartup.com',`} <br/>
+                            &nbsp;&nbsp;&nbsp;{`'apiKey': '${this.props.apiKey}',`} <br/>
+                            {  
                                 this.props.email.variablesComma.split(',').map( (v,i) => {
                                     return(
                                         <div key={i}>
-                                            <span >&nbsp;&nbsp;&nbsp;{`${v}: 'somevalue',`}</span>
+                                            <span >&nbsp;&nbsp;&nbsp;{`'${v}': 'somevalue',`}</span>
                                             <br/>
                                         </div>
                                     )
                                 })
                             }
-                            &nbsp;&nbsp;{`}`} <br/>
+                        {`}`} <br/> <br/>
+                        {`axios.get('/vectorAddress?', {`} <br/>
+                            &nbsp;&nbsp;{`params: {query}`} <br/>
                         {`})`} <br/>
                         {`.then(function (response) {`} <br/>
                             &nbsp;&nbsp;{`Want some coffee?`}
@@ -37,6 +38,7 @@ class JsAxios extends Component{
                         <span>Just hit the api filling in the required fields, ie: to,from, email_id etc</span> <br/>
                         <span>And have the Email generated and sent. Set a cronjob on your end to execute this</span> <br/>
                         <span>When needed, or get an intern to do it. Note: Intern's run on Hope and Coffee.</span> <br/>
+                        <span>You must fill in all the variables besides ApiKey and email_id</span> <br/>
                     </div>
                 </div>
             </div>

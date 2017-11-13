@@ -9,14 +9,15 @@ class JsAxios extends Component{
 
                     <div className="col-md-5 col-sm-5 col-xs-12" style={{padding:'10px'}} >
                         {`const query = {`} <br/>
-                        &nbsp;&nbsp;&nbsp;{`'email_id: ${this.props.email.email_id},'`} <br/>
-                        &nbsp;&nbsp;&nbsp;{`'to: awesomecustomer@something.com',`} <br/>
-                        &nbsp;&nbsp;&nbsp;{`'from: unpaidintern@bigstartup.com',`} <br/>
+                        &nbsp;&nbsp;&nbsp;{`'email_id': '${this.props.email.email_id},'`} <br/>
+                        &nbsp;&nbsp;&nbsp;{`'to': 'awesomecustomer@something.com',`} <br/>
+                        &nbsp;&nbsp;&nbsp;{`'from': 'unpaidintern@bigstartup.com',`} <br/>
+                        &nbsp;&nbsp;&nbsp;{`'apiKey': '${this.props.apiKey}',`} <br/>
                         {  
                             this.props.email.variablesComma.split(',').map( (v,i) => {
                                 return(
                                     <div key={i}>
-                                        <span >&nbsp;&nbsp;&nbsp;{`${v}: 'somevalue',`}</span>
+                                        <span >&nbsp;&nbsp;&nbsp;{`'${v}': 'somevalue',`}</span>
                                         <br/>
                                     </div>
                                 )
@@ -45,6 +46,7 @@ class JsAxios extends Component{
                         <span>Just hit the api filling in the required fields, ie: to,from, email_id etc</span> <br/>
                         <span>And have the Email generated and sent. Set a cronjob on your end to execute this</span> <br/>
                         <span>When needed, or get an intern to do it. Note: Intern's run on Hope and Coffee.</span> <br/>
+                        <span>You must fill in all the variables besides ApiKey and email_id</span> <br/>
                     </div>
 
 

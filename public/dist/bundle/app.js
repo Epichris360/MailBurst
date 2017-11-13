@@ -7980,7 +7980,12 @@ exports.default = {
 		return function (dispatch) {
 			return dispatch(_utils.TurboClient.putRequest('emailTemplates', orig, update, _constants2.default.UPDATE_EMAIL));
 		};
-	}
+	} /*,
+   updateUser: (user,params) => {
+   return dispatch => {
+   	return dispatch(TurboClient.putRequest('user',user,params))
+   }
+   }*/
 
 };
 
@@ -54872,19 +54877,6 @@ var MyEmailsList = function (_Component) {
             return;
         }
     }, {
-        key: 'modalSettings',
-        value: function modalSettings(temp) {
-            this.setState({ showModal: true, tempToShowInModal: temp });
-        }
-    }, {
-        key: 'closeModal',
-        value: function closeModal() {
-            this.setState({ showModal: false });
-        }
-    }, {
-        key: 'saveEmail',
-        value: function saveEmail() {}
-    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -54894,10 +54886,26 @@ var MyEmailsList = function (_Component) {
                     'div',
                     { className: 'row' },
                     _react2.default.createElement(
-                        'h1',
-                        null,
-                        'My Emails List: ',
-                        this.state.private ? 'Private' : 'Public!'
+                        'div',
+                        { className: 'row' },
+                        _react2.default.createElement(
+                            'h2',
+                            { className: 'col-md-6 col-sm-6 col-xs-12' },
+                            'My Emails List:',
+                            this.state.private ? 'Private' : 'Public!'
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'col-md-6 col-sm-6 col-xs-12 pull-right',
+                                style: { padding: '10px', borderStyle: 'solid', borderWidth: '2px' } },
+                            _react2.default.createElement(
+                                'h5',
+                                null,
+                                'Api Key: ',
+                                this.props.user.apiKey,
+                                ' '
+                            )
+                        )
                     ),
                     _react2.default.createElement('hr', null),
                     _react2.default.createElement(
@@ -54938,7 +54946,7 @@ var MyEmailsList = function (_Component) {
                                 ),
                                 temp.category == "private" ? _react2.default.createElement(
                                     _reactRouterDom.Link,
-                                    { className: 'btn btn-default btn-xs pull-right', to: '/email/' + temp.email_id + '/edit' },
+                                    { style: { marginRight: '10px' }, className: 'btn btn-default btn-xs pull-right', to: '/email/' + temp.email_id + '/edit' },
                                     'Update It!!'
                                 ) : null
                             );
@@ -54966,6 +54974,9 @@ var propsToState = function propsToState(dispatch) {
         //user_id or category:public
         getEmails: function getEmails(params) {
             return dispatch(_actions2.default.getEmails(params));
+        },
+        updateUser: function updateUser(user, params) {
+            return dispatch(_actions2.default.updateUser(user, params));
         }
     };
 };
@@ -55120,14 +55131,16 @@ var EmailTemplateShow = function (_Component) {
                             _react2.default.createElement(
                                 'span',
                                 null,
-                                'Note: examples only available in Javascript, more coming soon!'
+                                'Note: Examples only available in Javascript, more coming soon!'
                             ),
+                            ' ',
                             _react2.default.createElement('br', null),
                             _react2.default.createElement(
                                 'span',
                                 null,
-                                'NO API KEY NECESSARY FOR NOW!'
-                            )
+                                'Note: The Examples already include the variables and your key. You can drop this into your code.'
+                            ),
+                            _react2.default.createElement('br', null)
                         ),
                         _react2.default.createElement(
                             'div',
@@ -55138,12 +55151,12 @@ var EmailTemplateShow = function (_Component) {
                                 _react2.default.createElement(
                                     _reactBootstrap.Tab,
                                     { eventKey: 1, title: 'JS-Axios' },
-                                    _react2.default.createElement(_JsAxios2.default, { email: this.state.email })
+                                    _react2.default.createElement(_JsAxios2.default, { apiKey: this.props.user.apiKey, email: this.state.email })
                                 ),
                                 _react2.default.createElement(
                                     _reactBootstrap.Tab,
                                     { eventKey: 2, title: 'JS-SuperAgent' },
-                                    _react2.default.createElement(_JsSuperAgent2.default, { email: this.state.email })
+                                    _react2.default.createElement(_JsSuperAgent2.default, { apiKey: this.props.user.apiKey, email: this.state.email })
                                 )
                             )
                         ),
@@ -55159,10 +55172,11 @@ var EmailTemplateShow = function (_Component) {
 }(_react.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
-    var emails = state.emails;
+    var emails = state.emails,
+        user = state.user;
 
     return {
-        emails: emails
+        emails: emails, user: user
     };
 };
 
@@ -55214,35 +55228,25 @@ var JsAxios = function (_Component) {
                     _react2.default.createElement(
                         "div",
                         { className: "col-md-5 col-sm-5 col-xs-12", style: { padding: '10px' } },
-                        "axios.get('/vectorAddress?', {",
+                        "const query = {",
                         " ",
                         _react2.default.createElement("br", null),
-                        "\xA0\xA0",
-                        "params: {",
+                        "\xA0\xA0\xA0",
+                        "'email_id': '" + this.props.email.email_id + ",'",
                         " ",
                         _react2.default.createElement("br", null),
-                        _react2.default.createElement(
-                            "span",
-                            null,
-                            "\xA0\xA0\xA0",
-                            "'email_id: " + this.props.email.email_id + "',"
-                        ),
+                        "\xA0\xA0\xA0",
+                        "'to': 'awesomecustomer@something.com',",
                         " ",
                         _react2.default.createElement("br", null),
-                        _react2.default.createElement(
-                            "span",
-                            null,
-                            "\xA0\xA0\xA0",
-                            "'to: awesomecustomer@something.com',"
-                        ),
+                        "\xA0\xA0\xA0",
+                        "'from': 'unpaidintern@bigstartup.com',",
                         " ",
                         _react2.default.createElement("br", null),
-                        _react2.default.createElement(
-                            "span",
-                            null,
-                            "\xA0\xA0\xA0",
-                            "'from: unpaidintern@bigstartup.com',"
-                        ),
+                        "\xA0\xA0\xA0",
+                        "'apiKey': '" + this.props.apiKey + "',",
+                        " ",
+                        _react2.default.createElement("br", null),
                         this.props.email.variablesComma.split(',').map(function (v, i) {
                             return _react2.default.createElement(
                                 "div",
@@ -55251,13 +55255,21 @@ var JsAxios = function (_Component) {
                                     "span",
                                     null,
                                     "\xA0\xA0\xA0",
-                                    v + ": 'somevalue',"
+                                    "'" + v + "': 'somevalue',"
                                 ),
                                 _react2.default.createElement("br", null)
                             );
                         }),
-                        "\xA0\xA0",
                         "}",
+                        " ",
+                        _react2.default.createElement("br", null),
+                        " ",
+                        _react2.default.createElement("br", null),
+                        "axios.get('/vectorAddress?', {",
+                        " ",
+                        _react2.default.createElement("br", null),
+                        "\xA0\xA0",
+                        "params: {query}",
                         " ",
                         _react2.default.createElement("br", null),
                         "})",
@@ -55307,6 +55319,13 @@ var JsAxios = function (_Component) {
                             "span",
                             null,
                             "When needed, or get an intern to do it. Note: Intern's run on Hope and Coffee."
+                        ),
+                        " ",
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement(
+                            "span",
+                            null,
+                            "You must fill in all the variables besides ApiKey and email_id"
                         ),
                         " ",
                         _react2.default.createElement("br", null)
@@ -55371,15 +55390,19 @@ var JsAxios = function (_Component) {
                         " ",
                         _react2.default.createElement("br", null),
                         "\xA0\xA0\xA0",
-                        "'email_id: " + this.props.email.email_id + ",'",
+                        "'email_id': '" + this.props.email.email_id + ",'",
                         " ",
                         _react2.default.createElement("br", null),
                         "\xA0\xA0\xA0",
-                        "'to: awesomecustomer@something.com',",
+                        "'to': 'awesomecustomer@something.com',",
                         " ",
                         _react2.default.createElement("br", null),
                         "\xA0\xA0\xA0",
-                        "'from: unpaidintern@bigstartup.com',",
+                        "'from': 'unpaidintern@bigstartup.com',",
+                        " ",
+                        _react2.default.createElement("br", null),
+                        "\xA0\xA0\xA0",
+                        "'apiKey': '" + this.props.apiKey + "',",
                         " ",
                         _react2.default.createElement("br", null),
                         this.props.email.variablesComma.split(',').map(function (v, i) {
@@ -55390,7 +55413,7 @@ var JsAxios = function (_Component) {
                                     "span",
                                     null,
                                     "\xA0\xA0\xA0",
-                                    v + ": 'somevalue',"
+                                    "'" + v + "': 'somevalue',"
                                 ),
                                 _react2.default.createElement("br", null)
                             );
@@ -55472,6 +55495,13 @@ var JsAxios = function (_Component) {
                             "span",
                             null,
                             "When needed, or get an intern to do it. Note: Intern's run on Hope and Coffee."
+                        ),
+                        " ",
+                        _react2.default.createElement("br", null),
+                        _react2.default.createElement(
+                            "span",
+                            null,
+                            "You must fill in all the variables besides ApiKey and email_id"
                         ),
                         " ",
                         _react2.default.createElement("br", null)

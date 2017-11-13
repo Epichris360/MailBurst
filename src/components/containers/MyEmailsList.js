@@ -4,7 +4,7 @@ import actions              from '../../actions'
 import { Link }             from 'react-router-dom'
 import Loader               from './Loader'
 
-class MyEmailsList extends Component{
+class MyEmailsList extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -53,33 +53,33 @@ class MyEmailsList extends Component{
         }
         return
     }
-    modalSettings(temp){
-        this.setState({showModal: true, tempToShowInModal: temp})
-    }
-    closeModal(){
-        this.setState({showModal:false})
-    }
-    saveEmail(){
-
-    }
     render(){
         return(
             <div className="container" >
                 {
                     this.state.loading ? <Loader /> : 
                     <div className="row" >
-                        <h1>My Emails List: {this.state.private ? 'Private' : 'Public!'}</h1>
+                        <div className="row">
+                            <h2 className="col-md-6 col-sm-6 col-xs-12" >My Emails List: 
+                                {this.state.private ? 'Private' : 'Public!'}
+                            </h2>
+                            <div className="col-md-6 col-sm-6 col-xs-12 pull-right" 
+                                style={{padding:'10px', borderStyle:'solid',borderWidth:'2px'}} >
+                                <h5>Api Key: {this.props.user.apiKey} </h5>
+                            </div>
+                        </div>
+                        
                         <hr/>
-                        <div>
-                        {
-                            this.state.private ? 
-                                <button className="btn btn-success col-md-12 col-xs-12" 
-                                    onClick={ this.switch.bind(this,'public') }
-                                >Switch to Public Email Templates</button> :
-                                <button className="btn btn-success col-md-12 col-xs-12" 
-                                    onClick={ this.switch.bind(this,'private') }
-                                >Switch to Private Email Templates</button> 
-                        }
+                        <div  >
+                            {
+                                this.state.private ? 
+                                    <button className="btn btn-success col-md-12 col-xs-12" 
+                                        onClick={ this.switch.bind(this,'public') }
+                                    >Switch to Public Email Templates</button> :
+                                    <button className="btn btn-success col-md-12 col-xs-12" 
+                                        onClick={ this.switch.bind(this,'private') }
+                                    >Switch to Private Email Templates</button> 
+                            }
                         </div>
                         <br/>
                         <ul className="list-group" style={{marginTop:'30px'}} >
@@ -94,7 +94,7 @@ class MyEmailsList extends Component{
                                             </Link>
                                             {
                                                 temp.category == "private" ? 
-                                                <Link className="btn btn-default btn-xs pull-right" to={`/email/${temp.email_id}/edit`} >
+                                                <Link style={{marginRight:'10px'}} className="btn btn-default btn-xs pull-right" to={`/email/${temp.email_id}/edit`} >
                                                     Update It!!
                                                 </Link> : null
                                             }
@@ -120,7 +120,8 @@ const mapStateToProps = state => {
 const propsToState = dispatch => {
     return{
         //user_id or category:public
-        getEmails: (params) => dispatch(actions.getEmails(params))
+        getEmails: (params) => dispatch(actions.getEmails(params)),
+        updateUser:(user,params) => dispatch(actions.updateUser(user,params))
     }
 }
 

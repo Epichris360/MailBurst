@@ -60,14 +60,18 @@ class EmailTemplateShow extends Component{
                             <div className="col-md-10 col-sm-12 col-xs-12">
                                 <hr/>
                                 <h3>Examples of calling the Api!</h3>
-                                <span>Note: examples only available in Javascript, more coming soon!</span>
+                                <span>Note: Examples only available in Javascript, more coming soon!</span> <br/>
+                                <span>Note: The Examples already include the variables and your key. You can drop this into your code.</span>
                                 <br/>
-                                <span>NO API KEY NECESSARY FOR NOW!</span>
                             </div>
                             <div className="col-md-10 col-sm-12 col-xs-12">
                                 <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
-                                    <Tab eventKey={1} title="JS-Axios"><JsAxios email={this.state.email} /></Tab>
-                                    <Tab eventKey={2} title="JS-SuperAgent"><JsSuperAgent email={this.state.email} /></Tab>
+                                    <Tab eventKey={1} title="JS-Axios">
+                                        <JsAxios apiKey={this.props.user.apiKey} email={this.state.email} />
+                                    </Tab>
+                                    <Tab eventKey={2} title="JS-SuperAgent">
+                                        <JsSuperAgent apiKey={this.props.user.apiKey} email={this.state.email} />
+                                    </Tab>
                                 </Tabs>
                             </div>
                             <div className="col-md-12 col-sm-12 col-xs-12" 
@@ -83,9 +87,9 @@ class EmailTemplateShow extends Component{
 }
 
 const mapStateToProps = state => {
-    const { emails } = state
+    const { emails,user } = state
     return{
-        emails
+        emails, user
     }
 }
 
