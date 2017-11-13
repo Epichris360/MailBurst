@@ -5,18 +5,20 @@
 * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 */
 
-import Users 	from './Users'
+import Users 			     from './Users'
 import AutomatedEmailCreator from './AutomatedEmailCreator'
-import SignIn 	from './SignIn'
-import SignUp 	from './SignUp'
-import NavBar   from './NavBar'
-import MainPage from './MainPage'
-import MyEmailsList from './MyEmailsList'
-import EmailTemplateShow from './EmailTemplateShow'
-import NewNavBar from './NewNavBar'
+import SignIn 			     from './SignIn'
+import SignUp 			     from './SignUp'
+import NavBar   		     from './NavBar'
+import MainPage 			 from './MainPage'
+import MyEmailsList 		 from './MyEmailsList'
+import EmailTemplateShow     from './EmailTemplateShow'
+import NewNavBar    		 from './NewNavBar'
+import EmailEdit 			 from './EmailEdit'
 
 export {
 
-	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, MyEmailsList, EmailTemplateShow, NewNavBar
+	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, 
+	MyEmailsList, EmailTemplateShow, NewNavBar, EmailEdit
 	
 }

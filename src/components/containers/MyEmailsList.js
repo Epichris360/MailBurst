@@ -63,7 +63,6 @@ class MyEmailsList extends Component{
 
     }
     render(){
-        //fix public/private setting
         return(
             <div className="container" >
                 {
@@ -93,6 +92,12 @@ class MyEmailsList extends Component{
                                             <Link className="btn btn-success btn-xs pull-right" to={`/email/${temp.email_id}`}> 
                                                 Docs And See
                                             </Link>
+                                            {
+                                                temp.category == "private" ? 
+                                                <Link className="btn btn-default btn-xs pull-right" to={`/email/${temp.email_id}/edit`} >
+                                                    Update It!!
+                                                </Link> : null
+                                            }
                                         </li>
                                     )
                                 })

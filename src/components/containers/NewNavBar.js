@@ -4,6 +4,7 @@ import { connect }          from 'react-redux'
 import actions              from '../../actions'
 import { LinkContainer }    from 'react-router-bootstrap'
 import { withRouter }       from 'react-router'
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
 class NewNavBar extends Component{
     constructor(props){
@@ -24,14 +25,15 @@ class NewNavBar extends Component{
                 <h1 id="logo"><Link className="navbar-brand" to="/">MailMeteor</Link></h1>
                 <nav id="nav">
                     <ul>
-                        <li className="current"><a href="index.html">Welcome</a></li>
                         {
                             this.props.user.id == '' ?
                             <li><Link to="/signin">Sign In</Link></li> : null
                         }
                         {
                             this.props.user.id == '' ? 
-                            <li><Link to="/signup" >Sign Up</Link></li> : null
+                                <li>
+                                    <Link to="/signup">Sign Up</Link>
+                                </li> : null
                         }
                         {
                             this.props.user.id != '' ?
@@ -76,4 +78,4 @@ const dispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps,dispatchToProps)( withRouter(NewNavBar))
+export default connect(mapStateToProps,dispatchToProps)( withRouter(NewNavBar) )

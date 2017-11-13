@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import actions from '../../actions'
+import { v4 } from 'uuid'
 
 class SignUp extends Component{
     constructor(props){
@@ -24,7 +25,8 @@ class SignUp extends Component{
             this.setState({ errorMessage: 'Passwords Don\'t Match!' })
             return
         }
-        const params = { firstName, lastName, username, password, email, role:'normal' }
+        const apiKey = v4().split('-').join('')
+        const params = { firstName, lastName, username, password, email, apiKey:apiKey, role:'normal' }
         this.props.signUp(params)
         .then(response => {
             this.setState({error: false})

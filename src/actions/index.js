@@ -51,6 +51,11 @@ export default {
 		return dispatch => {
 			return dispatch(TurboClient.getRequest('emailTemplates',params,constants.GET_EMAILS))
 		}
+	},
+	emailTemplateUpdate: (orig, update) => {
+		return dispatch => {
+			return dispatch(TurboClient.putRequest('emailTemplates',orig,update,constants.UPDATE_EMAIL))
+		}
 	}
 	
 }

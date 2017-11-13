@@ -14,6 +14,7 @@ export default {
 
 
 	NewEmailTemplate:		'NewEmailTemplate',
-	GET_EMAILS:				'GET_EMAILS'
+	GET_EMAILS:				'GET_EMAILS',
+	UPDATE_EMAIL:			'UPDATE_EMAIL'
 
 }
