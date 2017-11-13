@@ -18638,7 +18638,7 @@ var app = _react2.default.createElement(
 		null,
 		_react2.default.createElement(
 			'div',
-			null,
+			{ id: 'page-wrapper' },
 			_react2.default.createElement(_containers.NavBar, null),
 			_react2.default.createElement(
 				'div',
@@ -40425,7 +40425,7 @@ var createMemoryHistory = function createMemoryHistory() {
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.EmailTemplateShow = exports.MyEmailsList = exports.MainPage = exports.NavBar = exports.SignUp = exports.SignIn = exports.AutomatedEmailCreator = exports.Users = undefined;
+exports.NewNavBar = exports.EmailTemplateShow = exports.MyEmailsList = exports.MainPage = exports.NavBar = exports.SignUp = exports.SignIn = exports.AutomatedEmailCreator = exports.Users = undefined;
 
 var _Users = __webpack_require__(247);
 
@@ -40459,14 +40459,11 @@ var _EmailTemplateShow = __webpack_require__(418);
 
 var _EmailTemplateShow2 = _interopRequireDefault(_EmailTemplateShow);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _NewNavBar = __webpack_require__(421);
 
-/* * * * * * * * * * * * * * * * * * * * * * * * * * *
-	Export your container components here. The Users
-	container is just an example and you will likely
-	remove it in favor of your own containers. 
-* * * * * * * * * * * * * * * * * * * * * * * * * * * *
-*/
+var _NewNavBar2 = _interopRequireDefault(_NewNavBar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.Users = _Users2.default;
 exports.AutomatedEmailCreator = _AutomatedEmailCreator2.default;
@@ -40476,6 +40473,12 @@ exports.NavBar = _NavBar2.default;
 exports.MainPage = _MainPage2.default;
 exports.MyEmailsList = _MyEmailsList2.default;
 exports.EmailTemplateShow = _EmailTemplateShow2.default;
+exports.NewNavBar = _NewNavBar2.default; /* * * * * * * * * * * * * * * * * * * * * * * * * * *
+                                         	Export your container components here. The Users
+                                         	container is just an example and you will likely
+                                         	remove it in favor of your own containers. 
+                                         * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+                                         */
 
 /***/ }),
 /* 247 */
@@ -55214,7 +55217,7 @@ var JsAxios = function (_Component) {
                             "span",
                             null,
                             "\xA0\xA0\xA0",
-                            "email_id: " + this.props.email.email_id
+                            "'email_id: " + this.props.email.email_id + "',"
                         ),
                         " ",
                         _react2.default.createElement("br", null),
@@ -55222,7 +55225,7 @@ var JsAxios = function (_Component) {
                             "span",
                             null,
                             "\xA0\xA0\xA0",
-                            "to: awesomecustomer@something.com"
+                            "'to: awesomecustomer@something.com',"
                         ),
                         " ",
                         _react2.default.createElement("br", null),
@@ -55230,7 +55233,7 @@ var JsAxios = function (_Component) {
                             "span",
                             null,
                             "\xA0\xA0\xA0",
-                            "from: unpaidintern@bigstartup.com"
+                            "'from: unpaidintern@bigstartup.com',"
                         ),
                         this.props.email.variablesComma.split(',').map(function (v, i) {
                             return _react2.default.createElement(
@@ -55240,7 +55243,7 @@ var JsAxios = function (_Component) {
                                     "span",
                                     null,
                                     "\xA0\xA0\xA0",
-                                    v + ": 'somevalue'"
+                                    v + ": 'somevalue',"
                                 ),
                                 _react2.default.createElement("br", null)
                             );
@@ -55360,15 +55363,15 @@ var JsAxios = function (_Component) {
                         " ",
                         _react2.default.createElement("br", null),
                         "\xA0\xA0\xA0",
-                        "email_id: " + this.props.email.email_id + ",",
+                        "'email_id: " + this.props.email.email_id + ",'",
                         " ",
                         _react2.default.createElement("br", null),
                         "\xA0\xA0\xA0",
-                        "to: awesomecustomer@something.com,",
+                        "'to: awesomecustomer@something.com',",
                         " ",
                         _react2.default.createElement("br", null),
                         "\xA0\xA0\xA0",
-                        "from: unpaidintern@bigstartup.com,",
+                        "'from: unpaidintern@bigstartup.com',",
                         " ",
                         _react2.default.createElement("br", null),
                         this.props.email.variablesComma.split(',').map(function (v, i) {
@@ -55379,7 +55382,7 @@ var JsAxios = function (_Component) {
                                     "span",
                                     null,
                                     "\xA0\xA0\xA0",
-                                    v + ": 'somevalue'"
+                                    v + ": 'somevalue',"
                                 ),
                                 _react2.default.createElement("br", null)
                             );
@@ -55474,6 +55477,263 @@ var JsAxios = function (_Component) {
 }(_react.Component);
 
 exports.default = JsAxios;
+
+/***/ }),
+/* 421 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(53);
+
+var _reactRedux = __webpack_require__(23);
+
+var _actions = __webpack_require__(30);
+
+var _actions2 = _interopRequireDefault(_actions);
+
+var _reactRouterBootstrap = __webpack_require__(413);
+
+var _reactRouter = __webpack_require__(415);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var NewNavBar = function (_Component) {
+    _inherits(NewNavBar, _Component);
+
+    function NewNavBar(props) {
+        _classCallCheck(this, NewNavBar);
+
+        return _possibleConstructorReturn(this, (NewNavBar.__proto__ || Object.getPrototypeOf(NewNavBar)).call(this, props));
+    }
+
+    _createClass(NewNavBar, [{
+        key: 'logout',
+        value: function logout() {
+            var _this2 = this;
+
+            this.props.logout().then(function (date) {
+                _this2.props.history.push('/');
+            }).catch(function (err) {
+                console.log('err', err.message);
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'header',
+                { id: 'header' },
+                _react2.default.createElement(
+                    'h1',
+                    { id: 'logo' },
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { className: 'navbar-brand', to: '/' },
+                        'MailMeteor'
+                    )
+                ),
+                _react2.default.createElement(
+                    'nav',
+                    { id: 'nav' },
+                    _react2.default.createElement(
+                        'ul',
+                        null,
+                        _react2.default.createElement(
+                            'li',
+                            { className: 'current' },
+                            _react2.default.createElement(
+                                'a',
+                                { href: 'index.html' },
+                                'Welcome'
+                            )
+                        ),
+                        this.props.user.id == '' ? _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.Link,
+                                { to: '/signin' },
+                                'Sign In'
+                            )
+                        ) : null,
+                        this.props.user.id == '' ? _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.Link,
+                                { to: '/signup' },
+                                'Sign Up'
+                            )
+                        ) : null,
+                        this.props.user.id != '' ? _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.Link,
+                                { onClick: this.logout.bind(this), to: '' },
+                                'Logout'
+                            )
+                        ) : null,
+                        _react2.default.createElement(
+                            'li',
+                            { className: 'submenu' },
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#' },
+                                'Layouts'
+                            ),
+                            _react2.default.createElement(
+                                'ul',
+                                null,
+                                _react2.default.createElement(
+                                    'li',
+                                    null,
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: 'left-sidebar.html' },
+                                        'Left Sidebar'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    null,
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: 'right-sidebar.html' },
+                                        'Right Sidebar'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    null,
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: 'no-sidebar.html' },
+                                        'No Sidebar'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    null,
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: 'contact.html' },
+                                        'Contact'
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'li',
+                                    { className: 'submenu' },
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: '#' },
+                                        'Submenu'
+                                    ),
+                                    _react2.default.createElement(
+                                        'ul',
+                                        null,
+                                        _react2.default.createElement(
+                                            'li',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#' },
+                                                'Dolore Sed'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'li',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#' },
+                                                'Consequat'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'li',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#' },
+                                                'Lorem Magna'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'li',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#' },
+                                                'Sed Magna'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'li',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#' },
+                                                'Ipsum Nisl'
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'button special' },
+                                'Sign Up'
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return NewNavBar;
+}(_react.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+    var user = state.user;
+
+    return {
+        user: user
+    };
+};
+
+var dispatchToProps = function dispatchToProps(dispatch) {
+    return {
+        logout: function logout() {
+            return dispatch(_actions2.default.logoutUser());
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, dispatchToProps)((0, _reactRouter.withRouter)(NewNavBar));
 
 /***/ })
 ],[184]);

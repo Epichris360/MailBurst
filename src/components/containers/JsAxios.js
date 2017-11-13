@@ -8,15 +8,15 @@ class JsAxios extends Component{
                     <div className="col-md-5 col-sm-5 col-xs-12" style={{padding:'10px'}} >
                         {`axios.get('/vectorAddress?', {`} <br/>
                             &nbsp;&nbsp;{`params: {`} <br/>
-                            <span>&nbsp;&nbsp;&nbsp;{`email_id: ${this.props.email.email_id}`}</span> <br/>
-                            <span>&nbsp;&nbsp;&nbsp;{`to: awesomecustomer@something.com`}</span> <br/>
-                            <span>&nbsp;&nbsp;&nbsp;{`from: unpaidintern@bigstartup.com`}</span>
+                            <span>&nbsp;&nbsp;&nbsp;{`'email_id: ${this.props.email.email_id}',`}</span> <br/>
+                            <span>&nbsp;&nbsp;&nbsp;{`'to: awesomecustomer@something.com',`}</span> <br/>
+                            <span>&nbsp;&nbsp;&nbsp;{`'from: unpaidintern@bigstartup.com',`}</span>
                             {
                                 
                                 this.props.email.variablesComma.split(',').map( (v,i) => {
                                     return(
                                         <div key={i}>
-                                            <span >&nbsp;&nbsp;&nbsp;{`${v}: 'somevalue'`}</span>
+                                            <span >&nbsp;&nbsp;&nbsp;{`${v}: 'somevalue',`}</span>
                                             <br/>
                                         </div>
                                     )

@@ -18,7 +18,7 @@ class NavBar extends Component{
         .catch(err => {
             console.log('err',err.message)
         })
-        
+         
     }
     render(){
         return(

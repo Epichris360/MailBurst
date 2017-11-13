@@ -20,7 +20,11 @@ gulp.task('css', function(){
                 './public/css/animate.css',
                 './public/css/magnific-popup.css',
                 './public/css/responsive.css',
-                './public/css/custom.css'
+                './public/css/custom.css',
+                './public/css/font-awesome.min.css',
+                './public/css/ie8.css',
+                './public/css/ie9.css',
+                './public/css/main.css'
             ]
         )
         .pipe(minifyCSS())

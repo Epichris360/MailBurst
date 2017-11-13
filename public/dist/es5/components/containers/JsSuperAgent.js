@@ -40,15 +40,15 @@ var JsAxios = (function (Component) {
                             " ",
                             React.createElement("br", null),
                             "   ",
-                            "email_id: " + this.props.email.email_id + ",",
+                            "'email_id: " + this.props.email.email_id + ",'",
                             " ",
                             React.createElement("br", null),
                             "   ",
-                            "to: awesomecustomer@something.com,",
+                            "'to: awesomecustomer@something.com',",
                             " ",
                             React.createElement("br", null),
                             "   ",
-                            "from: unpaidintern@bigstartup.com,",
+                            "'from: unpaidintern@bigstartup.com',",
                             " ",
                             React.createElement("br", null),
                             this.props.email.variablesComma.split(",").map(function (v, i) {
@@ -59,7 +59,7 @@ var JsAxios = (function (Component) {
                                         "span",
                                         null,
                                         "   ",
-                                        "" + v + ": 'somevalue'"
+                                        "" + v + ": 'somevalue',"
                                     ),
                                     React.createElement("br", null)
                                 );

@@ -43,7 +43,7 @@ var MainPage = (function (Component) {
                             { style: caption },
                             React.createElement(
                                 "div",
-                                { className: "col-md-12 col-sm-12 col-xs-12 mx-auto" },
+                                { className: "col-md-10 col-sm-10 col-xs-12 mx-auto" },
                                 React.createElement(
                                     "div",
                                     { className: "col-lg-10 mx-auto" },
@@ -52,7 +52,7 @@ var MainPage = (function (Component) {
                                         null,
                                         React.createElement(
                                             "strong",
-                                            { style: { color: "white" } },
+                                            { style: { color: "white", outline: "black" } },
                                             "MailMeteor"
                                         )
                                     )

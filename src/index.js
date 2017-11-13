@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import Intro from './components/Intro'
 import { Switch, BrowserRouter as Router, Route  } from 'react-router-dom'
 import { AutomatedEmailCreator, SignIn, SignUp, NavBar, 
-	MainPage, MyEmailsList, EmailTemplateShow } from './components/containers'
+	MainPage, MyEmailsList, EmailTemplateShow, NewNavBar } from './components/containers'
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
 	This is the entry point of the React app with Redux
@@ -19,7 +19,7 @@ import { AutomatedEmailCreator, SignIn, SignUp, NavBar,
 const app = (
 	<Provider store={store.configure(null)}>
 		<Router>
-			<div >
+			<div id="page-wrapper" >
 				<NavBar />
 				<div>
 					<Switch>

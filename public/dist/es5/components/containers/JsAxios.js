@@ -47,7 +47,7 @@ var JsAxios = (function (Component) {
                                 "span",
                                 null,
                                 "   ",
-                                "email_id: " + this.props.email.email_id
+                                "'email_id: " + this.props.email.email_id + "',"
                             ),
                             " ",
                             React.createElement("br", null),
@@ -55,7 +55,7 @@ var JsAxios = (function (Component) {
                                 "span",
                                 null,
                                 "   ",
-                                "to: awesomecustomer@something.com"
+                                "'to: awesomecustomer@something.com',"
                             ),
                             " ",
                             React.createElement("br", null),
@@ -63,7 +63,7 @@ var JsAxios = (function (Component) {
                                 "span",
                                 null,
                                 "   ",
-                                "from: unpaidintern@bigstartup.com"
+                                "'from: unpaidintern@bigstartup.com',"
                             ),
                             this.props.email.variablesComma.split(",").map(function (v, i) {
                                 return React.createElement(
@@ -73,7 +73,7 @@ var JsAxios = (function (Component) {
                                         "span",
                                         null,
                                         "   ",
-                                        "" + v + ": 'somevalue'"
+                                        "" + v + ": 'somevalue',"
                                     ),
                                     React.createElement("br", null)
                                 );

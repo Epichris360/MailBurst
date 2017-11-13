@@ -13,9 +13,10 @@ import NavBar   from './NavBar'
 import MainPage from './MainPage'
 import MyEmailsList from './MyEmailsList'
 import EmailTemplateShow from './EmailTemplateShow'
+import NewNavBar from './NewNavBar'
 
 export {
 
-	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, MyEmailsList, EmailTemplateShow
+	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, MyEmailsList, EmailTemplateShow, NewNavBar
 	
 }
