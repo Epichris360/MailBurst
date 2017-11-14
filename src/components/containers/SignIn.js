@@ -41,12 +41,14 @@ class SignIn extends Component{
                             <input className="form-control" 
                                 type="text" 
                                 placeholder="username" 
+                                style={{background:'white'}}
                                 onChange={ e => this.setState({username:e.target.value }) }
                             />
                             <br />
                             <input className="form-control" 
                                 type="password" 
                                 placeholder="password" 
+                                style={{background:'white'}}
                                 onChange={ e => this.setState({password: e.target.value}) }
                             />
                             <br />

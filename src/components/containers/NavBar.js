@@ -12,13 +12,14 @@ class NavBar extends Component{
     }
     logout(){
         this.props.logout()
-        .then(date => {
+        .then(date => { 
             this.props.history.push('/')
+            return
         })
         .catch(err => {
             console.log('err',err.message)
+            return
         })
-         
     }
     render(){
         return(
@@ -26,7 +27,7 @@ class NavBar extends Component{
                 <Navbar inverse collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <Link className="navbar-brand" to="/">MailMeteor</Link>
+                            <Link className="navbar-brand" to="/"><strong>MailMeteor</strong></Link>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>

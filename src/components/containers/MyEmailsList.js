@@ -59,34 +59,38 @@ class MyEmailsList extends Component {
                 {
                     this.state.loading ? <Loader /> : 
                     <div className="row" >
-                        <div className="row">
-                            <h2 className="col-md-6 col-sm-6 col-xs-12" >My Emails List: 
-                                {this.state.private ? 'Private' : 'Public!'}
-                            </h2>
-                            <div className="col-md-6 col-sm-6 col-xs-12 pull-right" 
-                                style={{padding:'10px', borderStyle:'solid',borderWidth:'2px'}} >
-                                <h5>Api Key: {this.props.user.apiKey} </h5>
+                        <div  >
+                            <div className="col-md-12 col-sm-12 col-xs-12" 
+                                style={{marginBottom:'25px', padding:'20px'}}>
+                                <h2 className="col-md-6 col-sm-10 col-xs-10" >My Emails List: 
+                                    {this.state.private ? 'Private' : 'Public!'}
+                                </h2>
+                                <div className="col-md-4 col-sm-10 col-xs-10" 
+                                    style={{padding:'10px', borderStyle:'solid',borderWidth:'2px'}} >
+                                    <h5>Api Key: {this.props.user.apiKey} </h5>
+                                </div>
                             </div>
                         </div>
                         
                         <hr/>
-                        <div  >
+                        <div style={{marginBottom:'50px', padding:'5px'}}  >
                             {
                                 this.state.private ? 
-                                    <button className="btn btn-success col-md-12 col-xs-12" 
+                                    <button className="btn btn-success col-md-12 col-sm-12 col-xs-12" 
                                         onClick={ this.switch.bind(this,'public') }
                                     >Switch to Public Email Templates</button> :
-                                    <button className="btn btn-success col-md-12 col-xs-12" 
+                                    <button className="btn btn-success col-md-12 col-sm-12 col-xs-12" 
                                         onClick={ this.switch.bind(this,'private') }
                                     >Switch to Private Email Templates</button> 
                             }
                         </div>
                         <br/>
-                        <ul className="list-group" style={{marginTop:'30px'}} >
+                        <br/>
+                        <ul className="list-group" style={{padding:'5px', marginTop:'15px' }} >
                             {
                                 this.state.tempArr.map( (temp,i) => {
                                     return(
-                                        <li className="list-group-item" key={i}>
+                                        <li className="list-group-item col-md-12 col-sm-12 col-xs-12" key={i}>
                                             <b>Email Title:</b>{` ${temp.emailTitle.substr(0,30)}...`}
                                             
                                             <Link className="btn btn-success btn-xs pull-right" to={`/email/${temp.email_id}`}> 

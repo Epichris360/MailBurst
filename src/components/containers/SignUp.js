@@ -49,30 +49,34 @@ class SignUp extends Component{
                             <strong>Danger!</strong> {this.state.errorMessage}
                         </div> : null
                     }
-                    <div className="col-md-8">
-                        <h1 className="topmargin-sm nobottommargin">Sign Up!</h1>
+                    <div className="col-md-12 col-sm-12 col-xs-12">
+                        <h1 >Sign Up!</h1>
                         <hr/>
                         <input className="form-control"  
                             type="text" 
                             placeholder="User Name" 
+                            style={{background:'white'}}
                             onChange={ e => this.setState({username: e.target.value}) }
                             required
                         /> <br/>
                         <input className="form-control"  
                             type="text" 
                             placeholder="First Name" 
+                            style={{background:'white'}}
                             onChange={ e => this.setState({firstName: e.target.value}) }
                             required
                         /> <br/>
                         <input className="form-control"  
                             type="text" 
                             placeholder="Last Name" 
+                            style={{background:'white'}}
                             onChange={ e => this.setState({lastName: e.target.value}) }
                             required
                         /> <br/>
                         <input className="form-control"  
                             type="text" 
                             placeholder="Email" 
+                            style={{background:'white'}}
                             onChange={ e => this.setState({email: e.target.value}) }
                             required
                         />
@@ -80,12 +84,14 @@ class SignUp extends Component{
                         <input className="form-control"  
                             type="password" 
                             placeholder="Password"
+                            style={{background:'white'}}
                             onChange={ e => this.setState({password: e.target.value}) } 
                             required
                         /> <br/>
                         <input className="form-control"  
                             type="password" 
                             placeholder="Password Confirm" 
+                            style={{background:'white'}}
                             onChange={ e => this.setState({passwordConfirm: e.target.value}) }
                             required
                         />
@@ -94,7 +100,7 @@ class SignUp extends Component{
                             className="btn btn-lg btn-success"
                             onClick={ this.newUser.bind(this) }
                         >Sign Up!</button>
-                    </div>
+                    </div> 
                 </div>
             </div>
         )

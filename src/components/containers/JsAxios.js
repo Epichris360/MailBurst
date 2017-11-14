@@ -11,6 +11,7 @@ class JsAxios extends Component{
                             &nbsp;&nbsp;&nbsp;{`'to': 'awesomecustomer@something.com',`} <br/>
                             &nbsp;&nbsp;&nbsp;{`'from': 'unpaidintern@bigstartup.com',`} <br/>
                             &nbsp;&nbsp;&nbsp;{`'apiKey': '${this.props.apiKey}',`} <br/>
+                            &nbsp;&nbsp;&nbsp;{`'fromName': 'unpaidintern',`} <br/>
                             {  
                                 this.props.email.variablesComma.split(',').map( (v,i) => {
                                     return(
@@ -22,11 +23,11 @@ class JsAxios extends Component{
                                 })
                             }
                         {`}`} <br/> <br/>
-                        {`axios.get('/vectorAddress?', {`} <br/>
+                        {`axios.get('/https://production.turbo360-vector.com/mmvectors-qldabj/sendemail', {`} <br/>
                             &nbsp;&nbsp;{`params: {query}`} <br/>
                         {`})`} <br/>
                         {`.then(function (response) {`} <br/>
-                            &nbsp;&nbsp;{`Want some coffee?`}
+                            &nbsp;&nbsp;{`//Want some coffee?`}
                             &nbsp;&nbsp;{`console.log(response);`} <br/>
                         {`})`} <br/>
                         {`.catch(function (error) {`} <br/>

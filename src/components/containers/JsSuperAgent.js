@@ -13,6 +13,7 @@ class JsAxios extends Component{
                         &nbsp;&nbsp;&nbsp;{`'to': 'awesomecustomer@something.com',`} <br/>
                         &nbsp;&nbsp;&nbsp;{`'from': 'unpaidintern@bigstartup.com',`} <br/>
                         &nbsp;&nbsp;&nbsp;{`'apiKey': '${this.props.apiKey}',`} <br/>
+                        &nbsp;&nbsp;&nbsp;{`'fromName': 'unpaidintern',`} <br/>
                         {  
                             this.props.email.variablesComma.split(',').map( (v,i) => {
                                 return(
@@ -28,7 +29,7 @@ class JsAxios extends Component{
 
 
                         {`superagent`} <br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;{`.get('vertex.something.com/32213')`} <br/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;{`.get('/https://production.turbo360-vector.com/mmvectors-qldabj/sendemail'`} <br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;{`.query(query)`} <br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;{`.set('Accept','application/json')`} <br/>
                         &nbsp;&nbsp;&nbsp;&nbsp;{`.end( (err, response) => {`} <br/>

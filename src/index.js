@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import Intro from './components/Intro'
 import { Switch, BrowserRouter as Router, Route  } from 'react-router-dom'
 import { AutomatedEmailCreator, SignIn, SignUp, NavBar, EmailEdit,
-	MainPage, MyEmailsList, EmailTemplateShow, NewNavBar } from './components/containers'
+	MainPage, MyEmailsList, EmailTemplateShow, NewNavBar, Theme } from './components/containers'
 
 const app = (
 	<Provider store={store.configure(null)}>
@@ -14,7 +14,7 @@ const app = (
 				<NavBar />
 				<div>
 					<Switch>
-						<Route exact path="/" 		 			component={MainPage} />
+						<Route exact path="/" 		 			component={Theme} />
 						<Route path='/email-creator' 			component={AutomatedEmailCreator} />
 						<Route path="/emails-list"   			component={MyEmailsList}/>
 						<Route exact path="/email/:email_id" 	component={EmailTemplateShow}/>
