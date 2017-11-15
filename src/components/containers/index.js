@@ -15,11 +15,13 @@ import MyEmailsList 		 from './MyEmailsList'
 import EmailTemplateShow     from './EmailTemplateShow'
 import NewNavBar    		 from './NewNavBar'
 import EmailEdit 			 from './EmailEdit'
-import Theme				from './Theme'
+import HomePage				 from './HomePage'
+import Prices				 from './Prices'
+import Footer			     from './Footer'
 
 export {
 
-	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, 
-	MyEmailsList, EmailTemplateShow, NewNavBar, EmailEdit, Theme
+	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, Prices,
+	MyEmailsList, EmailTemplateShow, NewNavBar, EmailEdit, HomePage, Footer
 	
 }

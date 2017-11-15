@@ -6,7 +6,7 @@ import { withRouter }                                  from 'react-router'
 import { LinkContainer }                               from 'react-router-bootstrap'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
-class Theme extends Component {
+class HomePage extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
@@ -66,9 +66,9 @@ class Theme extends Component {
 									<h2>Make Your Life Easier With Mail Meteor!</h2>
 								</header>
 								<p>
-									<span>Get up in running in 10 or less</span> <br/>
+									<span>Get up in running in 10 minutes or less</span> <br/>
 									<span>Set up as many cronjobs as you want to send different types of emails!</span> <br/>
-									<span>Create as many templates or use public one's to send invites, promo codes, account sign up confirmations</span> <br/>
+									<span>Create as many templates or use public one's to send invites, promo codes, account sign up confirmations, Reminders or anything else you can think of</span> <br/>
 									<span>A/B test your email's with your own links</span>
 								</p>
 								<footer>
@@ -115,7 +115,9 @@ class Theme extends Component {
 									<header>
 										<h3>Don't Feel like Writing A Template?</h3>
 									</header>
-									<p>Public Templates Are Here To Help. Customize Them, Use Them, Send Them </p>
+									<p>Public Templates Are Here To Help. Customize Them, Use Them, Send Them <br/>
+										(Note: Only Text Templates Available Now. Graphic Templates Coming soon)
+									</p>
 									<br/>
 									<p>Take credit for them, get paid for them, repeat.</p>
 								</section>
@@ -208,26 +210,13 @@ class Theme extends Component {
 					</header>
 					<footer>
 						<ul className="buttons">
-							<li><a href="#" className="button special">Take My Money</a></li>
-							<li><a href="#" className="button">LOL Wut</a></li>
+							<li><Link to="/signup" className="button special">Take My Money</Link></li>
+							<li><Link to="/prices" className="button">LOL Wut</Link></li>
 						</ul>
 					</footer>
 
 				</section>
 
-				<footer id="footer">
-					<ul className="icons">
-						<li><a href="#" className="icon circle fa-twitter"><span className="label">Twitter</span></a></li>
-						<li><a href="#" className="icon circle fa-facebook"><span className="label">Facebook</span></a></li>
-						<li><a href="#" className="icon circle fa-google-plus"><span className="label">Google+</span></a></li>
-						<li><a href="#" className="icon circle fa-github"><span className="label">Github</span></a></li>
-						<li><a href="#" className="icon circle fa-dribbble"><span className="label">Dribbble</span></a></li>
-					</ul>
-
-					<ul className="copyright">
-						<li>&copy; Cristian Segovia: segoviacristian23@hotmail.com</li><li>A big Thank you to: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</footer>
 			</div>
 		)
 	}
@@ -247,4 +236,4 @@ const dispatchToProps = dispatch => {
 }
 
 
-export default withRouter(connect(mapStateToProps,dispatchToProps)( Theme ))
+export default withRouter(connect(mapStateToProps,dispatchToProps)( HomePage ))

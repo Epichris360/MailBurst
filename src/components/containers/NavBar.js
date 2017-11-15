@@ -54,6 +54,9 @@ class NavBar extends Component{
                                 <LinkContainer to="/signup">
                                     <NavItem eventKey={2}>Sign Up</NavItem>
                                 </LinkContainer>
+                                <LinkContainer to="/prices">
+                                    <NavItem eventKey={2}>Pricing</NavItem>
+                                </LinkContainer>
                             </Nav> :  <Nav pullRight>
                                 <NavItem eventKey={1} onClick={this.logout.bind(this)} >Logout</NavItem>
                             </Nav>
