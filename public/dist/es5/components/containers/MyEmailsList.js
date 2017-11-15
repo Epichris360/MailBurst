@@ -86,28 +86,8 @@ var MyEmailsList = (function (Component) {
             writable: true,
             configurable: true
         },
-        modalSettings: {
-            value: function modalSettings(temp) {
-                this.setState({ showModal: true, tempToShowInModal: temp });
-            },
-            writable: true,
-            configurable: true
-        },
-        closeModal: {
-            value: function closeModal() {
-                this.setState({ showModal: false });
-            },
-            writable: true,
-            configurable: true
-        },
-        saveEmail: {
-            value: function saveEmail() {},
-            writable: true,
-            configurable: true
-        },
         render: {
             value: function render() {
-                //fix public/private setting
                 return React.createElement(
                     "div",
                     { className: "container" },
@@ -115,37 +95,59 @@ var MyEmailsList = (function (Component) {
                         "div",
                         { className: "row" },
                         React.createElement(
-                            "h1",
+                            "div",
                             null,
-                            "My Emails List: ",
-                            this.state["private"] ? "Private" : "Public!"
+                            React.createElement(
+                                "div",
+                                { className: "col-md-12 col-sm-12 col-xs-12",
+                                    style: { marginBottom: "25px", padding: "20px" } },
+                                React.createElement(
+                                    "h2",
+                                    { className: "col-md-6 col-sm-10 col-xs-10" },
+                                    "My Emails List:",
+                                    this.state["private"] ? "Private" : "Public!"
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "col-md-4 col-sm-10 col-xs-10",
+                                        style: { padding: "10px", borderStyle: "solid", borderWidth: "2px" } },
+                                    React.createElement(
+                                        "h5",
+                                        null,
+                                        "Api Key: ",
+                                        this.props.user.apiKey,
+                                        " "
+                                    )
+                                )
+                            )
                         ),
                         React.createElement("hr", null),
                         React.createElement(
                             "div",
-                            null,
+                            { style: { marginBottom: "50px", padding: "5px" } },
                             this.state["private"] ? React.createElement(
                                 "button",
-                                { className: "btn btn-success col-md-12 col-xs-12",
+                                { className: "btn btn-success col-md-12 col-sm-12 col-xs-12",
                                     onClick: this["switch"].bind(this, "public")
                                 },
                                 "Switch to Public Email Templates"
                             ) : React.createElement(
                                 "button",
-                                { className: "btn btn-success col-md-12 col-xs-12",
+                                { className: "btn btn-success col-md-12 col-sm-12 col-xs-12",
                                     onClick: this["switch"].bind(this, "private")
                                 },
                                 "Switch to Private Email Templates"
                             )
                         ),
                         React.createElement("br", null),
+                        React.createElement("br", null),
                         React.createElement(
                             "ul",
-                            { className: "list-group", style: { marginTop: "30px" } },
+                            { className: "list-group", style: { padding: "5px", marginTop: "15px" } },
                             this.state.tempArr.map(function (temp, i) {
                                 return React.createElement(
                                     "li",
-                                    { className: "list-group-item", key: i },
+                                    { className: "list-group-item col-md-12 col-sm-12 col-xs-12", key: i },
                                     React.createElement(
                                         "b",
                                         null,
@@ -156,7 +158,12 @@ var MyEmailsList = (function (Component) {
                                         Link,
                                         { className: "btn btn-success btn-xs pull-right", to: "/email/" + temp.email_id },
                                         "Docs And See"
-                                    )
+                                    ),
+                                    temp.category == "private" ? React.createElement(
+                                        Link,
+                                        { style: { marginRight: "10px" }, className: "btn btn-default btn-xs pull-right", to: "/email/" + temp.email_id + "/edit" },
+                                        "Update It!!"
+                                    ) : null
                                 );
                             })
                         )
@@ -184,6 +191,9 @@ var propsToState = function (dispatch) {
         //user_id or category:public
         getEmails: function (params) {
             return dispatch(actions.getEmails(params));
+        },
+        updateUser: function (user, params) {
+            return dispatch(actions.updateUser(user, params));
         }
     };
 };

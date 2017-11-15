@@ -109,6 +109,7 @@ const login = (credentials, actionType) => {
 const logout = (actionType) => {
 	return dispatch => turbo({site_id:APP_ID}).logout()
 		.then(data => {
+			console.log('data',data,'actiontype',actionType)
 			if (actionType != null){
 				dispatch({
 					type: actionType,

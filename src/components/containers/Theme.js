@@ -15,7 +15,7 @@ class Theme extends Component {
 	}
 	render(){
 		return ( 
-			<div id="page-wrapper">
+			<div id="page-wrapper" style={{marginTop:'-20px'}} >
 
 				<section id="banner">
 					<div className="inner"   >
@@ -63,9 +63,14 @@ class Theme extends Component {
 							<div className="8u 12u(narrower)">
 
 								<header>
-									<h2>Behold the <strong>icons</strong> that visualize what you’re all about. or just take up space. your call bro.</h2>
+									<h2>Make Your Life Easier With Mail Meteor!</h2>
 								</header>
-								<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu comteger ut fermentum lorem. Lorem ipsum dolor sit amet. Sed tristique purus vitae volutpat ultrices. eu elit eget commodo. Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo.</p>
+								<p>
+									<span>Get up in running in 10 or less</span> <br/>
+									<span>Set up as many cronjobs as you want to send different types of emails!</span> <br/>
+									<span>Create as many templates or use public one's to send invites, promo codes, account sign up confirmations</span> <br/>
+									<span>A/B test your email's with your own links</span>
+								</p>
 								<footer>
 									<ul className="buttons">
 										<li><a href="#" className="button">Find Out More</a></li>
@@ -93,39 +98,45 @@ class Theme extends Component {
 							<div className="4u 12u(narrower)">
 
 								<section>
-									<span className="icon featured fa-check"></span>
+									<span className="icon featured fa-server"></span>
 									<header>
-										<h3>This is Something</h3>
+										<h3>Built On To Of Turbo360</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									<p>99.9% uptime, thanks to <a href="https://www.turbo360.co">Turbo360's</a> awesome platform constructed on top of AWS</p>
+									<br/>
+									<p>This is not a paid promotion..... yet</p>
 								</section>
 
 							</div>
 							<div className="4u 12u(narrower)">
 
 								<section>
-									<span className="icon featured fa-check"></span>
+									<span className="icon featured fa-commenting"></span>
 									<header>
-										<h3>Also Something</h3>
+										<h3>Don't Feel like Writing A Template?</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									<p>Public Templates Are Here To Help. Customize Them, Use Them, Send Them </p>
+									<br/>
+									<p>Take credit for them, get paid for them, repeat.</p>
 								</section>
 
 							</div>
 							<div className="4u 12u(narrower)">
 
 								<section>
-									<span className="icon featured fa-check"></span>
+									<span className="icon featured fa-cloud-upload"></span>
 									<header>
-										<h3>Probably Something</h3>
+										<h3>Easy To Use API</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									<p>Code Examples Include Your APIKEY, and Necesary Variables</p> 
+									<br/>
+									<p>Just copy and paste. Just like using StackOverFlow</p>
 								</section>
 
 							</div>
 						</div>
 					</section>
-
+					{/*}
 					<section className="wrapper style3 container special">
 
 						<header className="major">
@@ -187,12 +198,13 @@ class Theme extends Component {
 							</ul>
 						</footer>
 					</section>
+					*/}
 				</article>
 
 				<section id="cta">
 					<header>
 						<h2>Ready to do <strong>something</strong>?</h2>
-						<p>Sign Up and get 3000 free emails, immediatly.</p>
+						<p>Sign Up and get 1000 free emails a month! immediatly.</p>
 					</header>
 					<footer>
 						<ul className="buttons">

@@ -22,6 +22,14 @@ module.exports = function (_x, action) {
             newState = [].concat(_toConsumableArray(state), _toConsumableArray(action.data));
             return newState;
 
+        case constants.UPDATE_EMAIL:
+            //const tasksIndex = projectChange.tasks.map( task => task.task_id ).indexOf( t.task_id )
+            newState = state;
+            var index = state.map(function (e) {
+                return e.email_id;
+            }).indexOf(action.data.email_id);
+            newState[index] = action.data;
+            return newState;
         default:
             return state;
     }

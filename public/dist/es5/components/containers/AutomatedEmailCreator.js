@@ -27,7 +27,7 @@ var AutomatedEmailCreator = (function (Component) {
 
         _get(Object.getPrototypeOf(AutomatedEmailCreator.prototype), "constructor", this).call(this, props);
         this.state = {
-            emailTitle: "", emailBody: "", variablesComma: "", turboApiKey: "",
+            emailTitle: "", emailBody: "", variablesComma: "",
             error: false, errorMessage: "", category: "private"
         };
     }
@@ -42,11 +42,11 @@ var AutomatedEmailCreator = (function (Component) {
         },
         formatAndSendEmail: {
             value: function formatAndSendEmail() {
+                var _this = this;
                 var _state = this.state;
                 var emailTitle = _state.emailTitle;
                 var emailBody = _state.emailBody;
                 var variablesComma = _state.variablesComma;
-                var turboApiKey = _state.turboApiKey;
                 var category = _state.category;
                 if (variablesComma.split(" ") > 1) {
                     this.setState({ error: true, errorMessage: "error! there was a space in your variables!" });
@@ -57,17 +57,17 @@ var AutomatedEmailCreator = (function (Component) {
                     this.setState({ error: true, errorMessage: "Amount of variables in email body and variables input dont match!" });
                     return;
                 }
-                if (emailTitle == "" && emailBody == "" && variablesComma == "" && turboApiKey == "") {
+                if (emailTitle == "" && emailBody == "" && variablesComma == "") {
                     this.setState({ error: true, errorMessage: "Somethings Empty!" });
                     return;
                 }
                 var emailTemplate = {
                     email_id: v4(),
-                    emailTitle: emailTitle, emailBody: emailBody, variablesComma: variablesComma, turboApiKey: turboApiKey,
+                    emailTitle: emailTitle, emailBody: emailBody, variablesComma: variablesComma,
                     user_id: this.props.user.id, user_email: this.props.user.email, category: category
                 };
                 this.props.emailTemplateCreator(emailTemplate).then(function (data) {
-                    console.log("email: just created", data);
+                    _this.props.history.push("/email/" + emailTemplate.email_id);
                     return;
                 })["catch"](function (err) {
                     console.log("err", err.message);
@@ -86,7 +86,7 @@ var AutomatedEmailCreator = (function (Component) {
                 for (var x = 0; x < varSplit.length; x++) {
                     var indexNum = emailSplit.map(function (emailblock) {
                         return emailblock;
-                    }).indexOf("$" + varSplit[x]);
+                    }).indexOf("" + varSplit[x]);
                     if (indexNum >= 0) {
                         howManyVarsFound++;
                     }
@@ -119,7 +119,7 @@ var AutomatedEmailCreator = (function (Component) {
                             React.createElement(
                                 "h1",
                                 null,
-                                "Email for Customers Who Signed Up But Didn't Convert:"
+                                "Create Any Email Template That You Want!!!:"
                             ),
                             React.createElement("hr", null),
                             React.createElement(
@@ -137,24 +137,11 @@ var AutomatedEmailCreator = (function (Component) {
                             React.createElement(
                                 "label",
                                 { htmlFor: "" },
-                                "Turbo API Key:"
-                            ),
-                            React.createElement("input", { type: "text", className: "form-control",
-                                required: true,
-                                onChange: function (e) {
-                                    return _this.setState({ turboApiKey: e.target.value });
-                                },
-                                placeholder: "Turbo API key please"
-                            }),
-                            React.createElement("br", null),
-                            React.createElement(
-                                "label",
-                                { htmlFor: "" },
                                 "Body for the Email:"
                             ),
                             React.createElement("textarea", { cols: "30", rows: "10", className: "form-control",
                                 required: true,
-                                placeholder: "So format your *$variables* like this!!. So lets say you want to add a customers *$name* and maybe a discountcode *$code*. you know to increase convesion or something",
+                                placeholder: "Format your *variables* like this!!, other than that write as you normally would. So lets say you want to add a customers *name* and maybe a discountcode *code*. you know to increase convesion or something",
                                 onChange: function (e) {
                                     return _this.setState({ emailBody: e.target.value });
                                 }
@@ -163,13 +150,13 @@ var AutomatedEmailCreator = (function (Component) {
                             React.createElement(
                                 "label",
                                 { htmlFor: "" },
-                                "Write your vars here. Remember that your varibles ",
+                                "Write your vars here. Remember that your varibles must be ",
                                 React.createElement(
                                     "b",
                                     null,
                                     "Identical"
                                 ),
-                                " to the ones in the body. Seperate them by commas no spaces!:  "
+                                " to the ones in the body(uppercase, lowercase, camelcase etc). Seperate them by commas no spaces!:  "
                             ),
                             React.createElement("input", { type: "text", className: "form-control",
                                 required: true,

@@ -7,16 +7,16 @@ class JsAxios extends Component{
                 <div className="row" style={{marginTop:'20px'}} >
                     <div className="col-md-5 col-sm-5 col-xs-12" style={{padding:'10px'}} >
                         {`const query = {`} <br/>
-                            &nbsp;&nbsp;&nbsp;{`'email_id': '${this.props.email.email_id},'`} <br/>
-                            &nbsp;&nbsp;&nbsp;{`'to': 'awesomecustomer@something.com',`} <br/>
-                            &nbsp;&nbsp;&nbsp;{`'from': 'unpaidintern@bigstartup.com',`} <br/>
-                            &nbsp;&nbsp;&nbsp;{`'apiKey': '${this.props.apiKey}',`} <br/>
-                            &nbsp;&nbsp;&nbsp;{`'fromName': 'unpaidintern',`} <br/>
+                            &nbsp;&nbsp;{`'email_id': '${this.props.email.email_id},'`} <br/>
+                            &nbsp;&nbsp;{`'to': 'awesomecustomer@something.com',`} <br/>
+                            &nbsp;&nbsp;{`'from': 'unpaidintern@bigstartup.com',`} <br/>
+                            &nbsp;&nbsp;{`'apiKey': '${this.props.apiKey}',`} <br/>
+                            &nbsp;&nbsp;{`'fromName': 'unpaidintern',`} <br/>
                             {  
                                 this.props.email.variablesComma.split(',').map( (v,i) => {
                                     return(
                                         <div key={i}>
-                                            <span >&nbsp;&nbsp;&nbsp;{`'${v}': 'somevalue',`}</span>
+                                            <span >&nbsp;&nbsp;{`'${v}': 'somevalue',`}</span>
                                             <br/>
                                         </div>
                                     )

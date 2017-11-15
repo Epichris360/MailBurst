@@ -27,6 +27,10 @@ var EmailTemplateShow = _interopRequire(require("./EmailTemplateShow"));
 
 var NewNavBar = _interopRequire(require("./NewNavBar"));
 
+var EmailEdit = _interopRequire(require("./EmailEdit"));
+
+var Theme = _interopRequire(require("./Theme"));
+
 exports.Users = Users;
 exports.AutomatedEmailCreator = AutomatedEmailCreator;
 exports.SignIn = SignIn;
@@ -36,6 +40,8 @@ exports.MainPage = MainPage;
 exports.MyEmailsList = MyEmailsList;
 exports.EmailTemplateShow = EmailTemplateShow;
 exports.NewNavBar = NewNavBar;
+exports.EmailEdit = EmailEdit;
+exports.Theme = Theme;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });

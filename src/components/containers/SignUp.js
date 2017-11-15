@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import actions from '../../actions'
-import { v4 } from 'uuid'
+import { connect }          from 'react-redux'
+import actions              from '../../actions'
+import { v4 }               from 'uuid'
+import { backgroundShadow, input } from './Css'
 
 class SignUp extends Component{
     constructor(props){
@@ -42,75 +43,75 @@ class SignUp extends Component{
     render(){
         return(
             <div className="container" >
-                <div className="row">
+                <div  ></div>
+                <div className="row" style={{marginTop:'-20px'}} >
                     {
                         this.state.error ? 
                         <div className="alert alert-danger">
                             <strong>Danger!</strong> {this.state.errorMessage}
                         </div> : null
                     }
-                    <div className="col-md-12 col-sm-12 col-xs-12">
-                        <h1 >Sign Up!</h1>
-                        <hr/>
-                        <input className="form-control"  
+                    <div className="col-md-12 col-sm-12 col-xs-12" style={backgroundShadow}>
+                        <h2>Sign Up!</h2>
+                        <label htmlFor=""></label>
+                        <input className="6u 12u(mobile)"  
                             type="text" 
                             placeholder="User Name" 
-                            style={{background:'white'}}
+                            style={input}
                             onChange={ e => this.setState({username: e.target.value}) }
                             required
-                        /> <br/>
-                        <input className="form-control"  
+                        /> 
+                        <input className="6u 12u(mobile)"  
                             type="text" 
                             placeholder="First Name" 
-                            style={{background:'white'}}
+                            style={input}
                             onChange={ e => this.setState({firstName: e.target.value}) }
                             required
-                        /> <br/>
-                        <input className="form-control"  
+                        />
+                        <input className="6u 12u(mobile)"  
                             type="text" 
                             placeholder="Last Name" 
-                            style={{background:'white'}}
+                            style={input}
                             onChange={ e => this.setState({lastName: e.target.value}) }
                             required
-                        /> <br/>
-                        <input className="form-control"  
+                        /> 
+                        <input className="6u 12u(mobile)"  
                             type="text" 
                             placeholder="Email" 
-                            style={{background:'white'}}
+                            style={input}
                             onChange={ e => this.setState({email: e.target.value}) }
                             required
                         />
-                        <br />
-                        <input className="form-control"  
+                        <input className="6u 12u(mobile)"  
                             type="password" 
                             placeholder="Password"
-                            style={{background:'white'}}
+                            style={input}
                             onChange={ e => this.setState({password: e.target.value}) } 
                             required
-                        /> <br/>
-                        <input className="form-control"  
+                        /> 
+                        <input className="6u 12u(mobile)"  
                             type="password" 
                             placeholder="Password Confirm" 
-                            style={{background:'white'}}
+                            style={input}
                             onChange={ e => this.setState({passwordConfirm: e.target.value}) }
                             required
                         />
-                        <br />
                         <button 
                             className="btn btn-lg btn-success"
                             onClick={ this.newUser.bind(this) }
                         >Sign Up!</button>
+                        <div className="col-md-12 col-sm-12 col-xs-12" style={{height:'20px'}} ></div>
                     </div> 
                 </div>
             </div>
         )
     }
 }
-
 const dispatchToProps = dispatch => {
     return{
         signUp: params => dispatch(actions.addUser(params))
     }
 }
+
 
 export default connect(null, dispatchToProps)(SignUp)

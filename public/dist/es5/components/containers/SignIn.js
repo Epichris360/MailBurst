@@ -63,30 +63,46 @@ var SignIn = (function (Component) {
                 return React.createElement(
                     "div",
                     { className: "container" },
+                    React.createElement("div", { style: { height: "60px" } }),
                     React.createElement(
                         "div",
                         { className: "row" },
                         this.state.submitted ? React.createElement(Loader, null) : React.createElement(
                             "div",
-                            { className: "col-xs-12 col-sm-12 col-md-8" },
+                            { className: "col-xs-12 col-sm-12 col-md-10 shadow-background-div" },
                             React.createElement(DangerAlert, { error: this.state.error, errorMessage: this.state.errorMessage }),
                             React.createElement(
                                 "h1",
                                 { className: "topmargin-sm nobottommargin" },
-                                "Sign In!"
+                                React.createElement(
+                                    "strong",
+                                    null,
+                                    "Sign In!"
+                                )
                             ),
                             React.createElement("hr", null),
+                            React.createElement(
+                                "label",
+                                { htmlFor: "" },
+                                "Username:"
+                            ),
                             React.createElement("input", { className: "form-control",
                                 type: "text",
                                 placeholder: "username",
+                                style: { background: "white", border: "1px solid #757372" },
                                 onChange: function (e) {
                                     return _this.setState({ username: e.target.value });
                                 }
                             }),
-                            React.createElement("br", null),
+                            React.createElement(
+                                "label",
+                                { htmlFor: "" },
+                                "Password:"
+                            ),
                             React.createElement("input", { className: "form-control",
                                 type: "password",
                                 placeholder: "password",
+                                style: { background: "white", border: "1px solid #757372" },
                                 onChange: function (e) {
                                     return _this.setState({ password: e.target.value });
                                 }
@@ -99,7 +115,8 @@ var SignIn = (function (Component) {
                                     onClick: this.loginUser.bind(this)
                                 },
                                 "Submit"
-                            )
+                            ),
+                            React.createElement("div", { className: "col-md-12 col-sm-12 col-xs-12", style: { height: "50px" } })
                         )
                     )
                 );

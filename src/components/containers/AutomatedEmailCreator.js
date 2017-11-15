@@ -3,6 +3,8 @@ import { connect }          from 'react-redux'
 import actions              from '../../actions'
 import DangerAlert          from './DangerAlert'
 import { v4 }               from 'uuid'
+import { backgroundShadow, 
+                    input } from './Css'
 
 class AutomatedEmailCreator extends Component{
     constructor(props){
@@ -84,27 +86,31 @@ class AutomatedEmailCreator extends Component{
         return(
             <div className="container" >
                 <div className="row" >
-                    <div className="col-md-12 col-sm-12 col-xs-12">
+                    <div className="col-md-12 col-sm-12 col-xs-12" 
+                        style={Object.assign({},backgroundShadow,{marginTop:'35px'})} >
                         <DangerAlert error={this.state.error} errorMessage={this.state.errorMessage} />
                         <h1>Create Any Email Template That You Want!!!:</h1>
                         <hr/>
                         <label htmlFor="">Title for the Email:</label>
-                        <input type="text" className="form-control" 
+                        <input type="text" className="12u" 
                             placeholder="Title for the Email!"
                             required={true}
+                            style={input}
                             onChange={ e => this.setState({ emailTitle: e.target.value }) }
                         />
 
                         <label htmlFor="">Body for the Email:</label>
-                        <textarea cols="30" rows="10" className="form-control"
+                        <textarea cols="30" rows="10" className="12u"
                             required={true}
+                            style={input}
                             placeholder="Format your *variables* like this!!, other than that write as you normally would. So lets say you want to add a customers *name* and maybe a discountcode *code*. you know to increase convesion or something"
                             onChange={ e => this.setState({ emailBody: e.target.value }) }
                         ></textarea>
                         <br/>
                         <label htmlFor="">Write your vars here. Remember that your varibles must be <b>Identical</b> to the ones in the body(uppercase, lowercase, camelcase etc). Seperate them by commas no spaces!:  </label>
-                        <input type="text" className="form-control" 
+                        <input type="text" className="12u" 
                             required={true}
+                            style={input}
                             onChange={ e => this.setState({ variablesComma: e.target.value }) }
                             placeholder="seperate your variables by commas"
                         />
@@ -122,6 +128,9 @@ class AutomatedEmailCreator extends Component{
                         className="btn btn-success btn-lg pull-right">
                             Create It!
                         </button>
+                        <div className="col-md-12 col-sm-12 col-xs-12" 
+                            style={{height:'10px',marginTop:'15px', marginBottom:'15px'}} >
+                        </div>
                     </div>
                 </div>
             </div>

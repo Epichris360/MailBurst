@@ -13,6 +13,7 @@ export default (state = initialState, action) => {
 
 		case constants.USER_CREATED:
 			return action.data
+
 		case constants.LOGOUT_USER:
 			return initialState
 

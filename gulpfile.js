@@ -24,7 +24,8 @@ gulp.task('css', function(){
                 './public/css/font-awesome.min.css',
                 './public/css/ie8.css',
                 './public/css/ie9.css',
-                './public/css/main.css'
+                './public/css/main.css',
+                './public/css/site.css'
             ]
         )
         .pipe(minifyCSS())

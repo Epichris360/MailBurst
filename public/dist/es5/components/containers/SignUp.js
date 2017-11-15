@@ -18,6 +18,7 @@ var Component = _react.Component;
 var connect = require("react-redux").connect;
 var actions = _interopRequire(require("../../actions"));
 
+var v4 = require("uuid").v4;
 var SignUp = (function (Component) {
     function SignUp(props) {
         _classCallCheck(this, SignUp);
@@ -53,7 +54,8 @@ var SignUp = (function (Component) {
                     this.setState({ errorMessage: "Passwords Don't Match!" });
                     return;
                 }
-                var params = { firstName: firstName, lastName: lastName, username: username, password: password, email: email, role: "normal" };
+                var apiKey = v4().split("-").join("");
+                var params = { firstName: firstName, lastName: lastName, username: username, password: password, email: email, apiKey: apiKey, role: "normal" };
                 this.props.signUp(params).then(function (response) {
                     _this.setState({ error: false });
                     _this.setState({ errorMessage: "" });
@@ -75,7 +77,7 @@ var SignUp = (function (Component) {
                     { className: "container" },
                     React.createElement(
                         "div",
-                        { className: "row" },
+                        { className: "row backgroundShadow" },
                         this.state.error ? React.createElement(
                             "div",
                             { className: "alert alert-danger" },
@@ -89,16 +91,17 @@ var SignUp = (function (Component) {
                         ) : null,
                         React.createElement(
                             "div",
-                            { className: "col-md-8" },
+                            { className: "col-md-12 col-sm-12 col-xs-12 " },
                             React.createElement(
                                 "h1",
-                                { className: "topmargin-sm nobottommargin" },
+                                null,
                                 "Sign Up!"
                             ),
                             React.createElement("hr", null),
                             React.createElement("input", { className: "form-control",
                                 type: "text",
                                 placeholder: "User Name",
+                                style: { background: "white" },
                                 onChange: function (e) {
                                     return _this.setState({ username: e.target.value });
                                 },
@@ -109,6 +112,7 @@ var SignUp = (function (Component) {
                             React.createElement("input", { className: "form-control",
                                 type: "text",
                                 placeholder: "First Name",
+                                style: { background: "white" },
                                 onChange: function (e) {
                                     return _this.setState({ firstName: e.target.value });
                                 },
@@ -119,6 +123,7 @@ var SignUp = (function (Component) {
                             React.createElement("input", { className: "form-control",
                                 type: "text",
                                 placeholder: "Last Name",
+                                style: { background: "white" },
                                 onChange: function (e) {
                                     return _this.setState({ lastName: e.target.value });
                                 },
@@ -129,6 +134,7 @@ var SignUp = (function (Component) {
                             React.createElement("input", { className: "form-control",
                                 type: "text",
                                 placeholder: "Email",
+                                style: { background: "white" },
                                 onChange: function (e) {
                                     return _this.setState({ email: e.target.value });
                                 },
@@ -138,6 +144,7 @@ var SignUp = (function (Component) {
                             React.createElement("input", { className: "form-control",
                                 type: "password",
                                 placeholder: "Password",
+                                style: { background: "white" },
                                 onChange: function (e) {
                                     return _this.setState({ password: e.target.value });
                                 },
@@ -148,6 +155,7 @@ var SignUp = (function (Component) {
                             React.createElement("input", { className: "form-control",
                                 type: "password",
                                 placeholder: "Password Confirm",
+                                style: { background: "white" },
                                 onChange: function (e) {
                                     return _this.setState({ passwordConfirm: e.target.value });
                                 },

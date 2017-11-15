@@ -12,7 +12,7 @@ class NavBar extends Component{
     }
     logout(){
         this.props.logout()
-        .then(date => { 
+        .then(data => { 
             this.props.history.push('/')
             return
         })

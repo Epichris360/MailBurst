@@ -132,14 +132,16 @@ var EmailTemplateShow = (function (Component) {
                                 React.createElement(
                                     "span",
                                     null,
-                                    "Note: examples only available in Javascript, more coming soon!"
+                                    "Note: Examples only available in Javascript, more coming soon!"
                                 ),
+                                " ",
                                 React.createElement("br", null),
                                 React.createElement(
                                     "span",
                                     null,
-                                    "NO API KEY NECESSARY FOR NOW!"
-                                )
+                                    "Note: The Examples already include the variables and your key. You can drop this into your code."
+                                ),
+                                React.createElement("br", null)
                             ),
                             React.createElement(
                                 "div",
@@ -150,12 +152,12 @@ var EmailTemplateShow = (function (Component) {
                                     React.createElement(
                                         Tab,
                                         { eventKey: 1, title: "JS-Axios" },
-                                        React.createElement(JsAxios, { email: this.state.email })
+                                        React.createElement(JsAxios, { apiKey: this.props.user.apiKey, email: this.state.email })
                                     ),
                                     React.createElement(
                                         Tab,
                                         { eventKey: 2, title: "JS-SuperAgent" },
-                                        React.createElement(JsSuperAgent, { email: this.state.email })
+                                        React.createElement(JsSuperAgent, { apiKey: this.props.user.apiKey, email: this.state.email })
                                     )
                                 )
                             ),
@@ -175,8 +177,9 @@ var EmailTemplateShow = (function (Component) {
 
 var mapStateToProps = function (state) {
     var emails = state.emails;
+    var user = state.user;
     return {
-        emails: emails
+        emails: emails, user: user
     };
 };
 

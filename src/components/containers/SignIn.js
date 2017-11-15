@@ -3,6 +3,7 @@ import { connect }          from 'react-redux'
 import actions              from '../../actions'
 import Loader               from './Loader'
 import DangerAlert          from './DangerAlert'
+import { backgroundShadow, input } from './Css'
 
 class SignIn extends Component{
     constructor(props){
@@ -30,25 +31,28 @@ class SignIn extends Component{
     }
     render(){
         return(
-            <div className="container" >
-                <div className="row" >
+            <div className="container"  >
+                <div style={{height:'40px'}} ></div>
+                <div className="row" > 
                     {
                         this.state.submitted ? <Loader /> :
-                        <div  className="col-xs-12 col-sm-12 col-md-8" >
+                        <div  className="col-xs-12 col-sm-12 col-md-10" style={backgroundShadow} >
                             <DangerAlert error={this.state.error} errorMessage={this.state.errorMessage} />
-                            <h1 className="topmargin-sm nobottommargin">Sign In!</h1>
+                            <h1 className="topmargin-sm nobottommargin"><strong>Sign In!</strong></h1>
                             <hr/>
-                            <input className="form-control" 
+                            <label htmlFor="">Username:</label>
+                            <input className="12u" 
                                 type="text" 
                                 placeholder="username" 
-                                style={{background:'white'}}
+                                style={input}
                                 onChange={ e => this.setState({username:e.target.value }) }
                             />
-                            <br />
-                            <input className="form-control" 
+                            
+                            <label htmlFor="">Password:</label>
+                            <input className="12u" 
                                 type="password" 
                                 placeholder="password" 
-                                style={{background:'white'}}
+                                style={input}
                                 onChange={ e => this.setState({password: e.target.value}) }
                             />
                             <br />
@@ -56,6 +60,7 @@ class SignIn extends Component{
                                 className="btn btn-lg btn-success col-xs-12"
                                 onClick={ this.loginUser.bind(this) }
                             >Submit</button>
+                            <div className="col-md-12 col-sm-12 col-xs-12" style={{height:'50px'}} ></div>
                         </div>
                     }
                 </div>
@@ -71,5 +76,7 @@ const dispatchToProps = dispatch => {
         allUsers: () => dispatch(actions.fetchUsers(null))
     }
 }
+
+
 
 export default connect(null,dispatchToProps)(SignIn)

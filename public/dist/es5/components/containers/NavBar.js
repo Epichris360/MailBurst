@@ -43,8 +43,10 @@ var NavBar = (function (Component) {
                 var _this = this;
                 this.props.logout().then(function (date) {
                     _this.props.history.push("/");
+                    return;
                 })["catch"](function (err) {
                     console.log("err", err.message);
+                    return;
                 });
             },
             writable: true,
@@ -67,7 +69,11 @@ var NavBar = (function (Component) {
                                 React.createElement(
                                     Link,
                                     { className: "navbar-brand", to: "/" },
-                                    "MailMeteor"
+                                    React.createElement(
+                                        "strong",
+                                        null,
+                                        "MailMeteor"
+                                    )
                                 )
                             ),
                             React.createElement(Navbar.Toggle, null)

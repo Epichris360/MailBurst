@@ -36,35 +36,29 @@ var JsAxios = (function (Component) {
                         React.createElement(
                             "div",
                             { className: "col-md-5 col-sm-5 col-xs-12", style: { padding: "10px" } },
-                            "axios.get('/vectorAddress?', {",
+                            "const query = {",
                             " ",
                             React.createElement("br", null),
-                            "  ",
-                            "params: {",
+                            "   ",
+                            "'email_id': '" + this.props.email.email_id + ",'",
                             " ",
                             React.createElement("br", null),
-                            React.createElement(
-                                "span",
-                                null,
-                                "   ",
-                                "'email_id: " + this.props.email.email_id + "',"
-                            ),
+                            "   ",
+                            "'to': 'awesomecustomer@something.com',",
                             " ",
                             React.createElement("br", null),
-                            React.createElement(
-                                "span",
-                                null,
-                                "   ",
-                                "'to: awesomecustomer@something.com',"
-                            ),
+                            "   ",
+                            "'from': 'unpaidintern@bigstartup.com',",
                             " ",
                             React.createElement("br", null),
-                            React.createElement(
-                                "span",
-                                null,
-                                "   ",
-                                "'from: unpaidintern@bigstartup.com',"
-                            ),
+                            "   ",
+                            "'apiKey': '" + this.props.apiKey + "',",
+                            " ",
+                            React.createElement("br", null),
+                            "   ",
+                            "'fromName': 'unpaidintern',",
+                            " ",
+                            React.createElement("br", null),
                             this.props.email.variablesComma.split(",").map(function (v, i) {
                                 return React.createElement(
                                     "div",
@@ -73,13 +67,21 @@ var JsAxios = (function (Component) {
                                         "span",
                                         null,
                                         "   ",
-                                        "" + v + ": 'somevalue',"
+                                        "'" + v + "': 'somevalue',"
                                     ),
                                     React.createElement("br", null)
                                 );
                             }),
-                            "  ",
                             "}",
+                            " ",
+                            React.createElement("br", null),
+                            " ",
+                            React.createElement("br", null),
+                            "axios.get('/https://production.turbo360-vector.com/mmvectors-qldabj/sendemail', {",
+                            " ",
+                            React.createElement("br", null),
+                            "  ",
+                            "params: {query}",
                             " ",
                             React.createElement("br", null),
                             "})",
@@ -89,7 +91,7 @@ var JsAxios = (function (Component) {
                             " ",
                             React.createElement("br", null),
                             "  ",
-                            "Want some coffee?",
+                            "//Want some coffee?",
                             "  ",
                             "console.log(response);",
                             " ",
@@ -129,6 +131,13 @@ var JsAxios = (function (Component) {
                                 "span",
                                 null,
                                 "When needed, or get an intern to do it. Note: Intern's run on Hope and Coffee."
+                            ),
+                            " ",
+                            React.createElement("br", null),
+                            React.createElement(
+                                "span",
+                                null,
+                                "You must fill in all the variables besides ApiKey and email_id"
                             ),
                             " ",
                             React.createElement("br", null)
