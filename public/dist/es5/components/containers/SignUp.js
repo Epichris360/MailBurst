@@ -19,6 +19,10 @@ var connect = require("react-redux").connect;
 var actions = _interopRequire(require("../../actions"));
 
 var v4 = require("uuid").v4;
+var _Css = require("./Css");
+
+var backgroundShadow = _Css.backgroundShadow;
+var input = _Css.input;
 var SignUp = (function (Component) {
     function SignUp(props) {
         _classCallCheck(this, SignUp);
@@ -75,9 +79,10 @@ var SignUp = (function (Component) {
                 return React.createElement(
                     "div",
                     { className: "container" },
+                    React.createElement("div", null),
                     React.createElement(
                         "div",
-                        { className: "row backgroundShadow" },
+                        { className: "row", style: { marginTop: "-20px" } },
                         this.state.error ? React.createElement(
                             "div",
                             { className: "alert alert-danger" },
@@ -91,77 +96,67 @@ var SignUp = (function (Component) {
                         ) : null,
                         React.createElement(
                             "div",
-                            { className: "col-md-12 col-sm-12 col-xs-12 " },
+                            { className: "col-md-12 col-sm-12 col-xs-12", style: backgroundShadow },
                             React.createElement(
-                                "h1",
+                                "h2",
                                 null,
                                 "Sign Up!"
                             ),
-                            React.createElement("hr", null),
-                            React.createElement("input", { className: "form-control",
+                            React.createElement("label", { htmlFor: "" }),
+                            React.createElement("input", { className: "6u 12u(mobile)",
                                 type: "text",
                                 placeholder: "User Name",
-                                style: { background: "white" },
+                                style: input,
                                 onChange: function (e) {
                                     return _this.setState({ username: e.target.value });
                                 },
                                 required: true
                             }),
-                            " ",
-                            React.createElement("br", null),
-                            React.createElement("input", { className: "form-control",
+                            React.createElement("input", { className: "6u 12u(mobile)",
                                 type: "text",
                                 placeholder: "First Name",
-                                style: { background: "white" },
+                                style: input,
                                 onChange: function (e) {
                                     return _this.setState({ firstName: e.target.value });
                                 },
                                 required: true
                             }),
-                            " ",
-                            React.createElement("br", null),
-                            React.createElement("input", { className: "form-control",
+                            React.createElement("input", { className: "6u 12u(mobile)",
                                 type: "text",
                                 placeholder: "Last Name",
-                                style: { background: "white" },
+                                style: input,
                                 onChange: function (e) {
                                     return _this.setState({ lastName: e.target.value });
                                 },
                                 required: true
                             }),
-                            " ",
-                            React.createElement("br", null),
-                            React.createElement("input", { className: "form-control",
+                            React.createElement("input", { className: "6u 12u(mobile)",
                                 type: "text",
                                 placeholder: "Email",
-                                style: { background: "white" },
+                                style: input,
                                 onChange: function (e) {
                                     return _this.setState({ email: e.target.value });
                                 },
                                 required: true
                             }),
-                            React.createElement("br", null),
-                            React.createElement("input", { className: "form-control",
+                            React.createElement("input", { className: "6u 12u(mobile)",
                                 type: "password",
                                 placeholder: "Password",
-                                style: { background: "white" },
+                                style: input,
                                 onChange: function (e) {
                                     return _this.setState({ password: e.target.value });
                                 },
                                 required: true
                             }),
-                            " ",
-                            React.createElement("br", null),
-                            React.createElement("input", { className: "form-control",
+                            React.createElement("input", { className: "6u 12u(mobile)",
                                 type: "password",
                                 placeholder: "Password Confirm",
-                                style: { background: "white" },
+                                style: input,
                                 onChange: function (e) {
                                     return _this.setState({ passwordConfirm: e.target.value });
                                 },
                                 required: true
                             }),
-                            React.createElement("br", null),
                             React.createElement(
                                 "button",
                                 {
@@ -169,7 +164,8 @@ var SignUp = (function (Component) {
                                     onClick: this.newUser.bind(this)
                                 },
                                 "Sign Up!"
-                            )
+                            ),
+                            React.createElement("div", { className: "col-md-12 col-sm-12 col-xs-12", style: { height: "20px" } })
                         )
                     )
                 );
@@ -189,5 +185,6 @@ var dispatchToProps = function (dispatch) {
         }
     };
 };
+
 
 module.exports = connect(null, dispatchToProps)(SignUp);

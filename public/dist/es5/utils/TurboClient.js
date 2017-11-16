@@ -114,6 +114,7 @@ var login = function (credentials, actionType) {
 var logout = function (actionType) {
 	return function (dispatch) {
 		return turbo({ site_id: APP_ID }).logout().then(function (data) {
+			console.log("data", data, "actiontype", actionType);
 			if (actionType != null) {
 				dispatch({
 					type: actionType,

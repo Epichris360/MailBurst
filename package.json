@@ -12,6 +12,7 @@
     "bluebird": "latest",
     "debug": "latest",
     "dotenv": "latest",
+    "html-parse-stringify": "^1.0.2",
     "moment": "latest",
     "react": "latest",
     "react-bootstrap": "^0.31.5",

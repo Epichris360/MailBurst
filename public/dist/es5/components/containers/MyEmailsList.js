@@ -21,6 +21,7 @@ var actions = _interopRequire(require("../../actions"));
 var Link = require("react-router-dom").Link;
 var Loader = _interopRequire(require("./Loader"));
 
+var backgroundShadow = require("./Css").backgroundShadow;
 var MyEmailsList = (function (Component) {
     function MyEmailsList(props) {
         _classCallCheck(this, MyEmailsList);
@@ -100,19 +101,19 @@ var MyEmailsList = (function (Component) {
                             React.createElement(
                                 "div",
                                 { className: "col-md-12 col-sm-12 col-xs-12",
-                                    style: { marginBottom: "25px", padding: "20px" } },
+                                    style: Object.assign({}, { padding: "10px" }, backgroundShadow) },
                                 React.createElement(
                                     "h2",
-                                    { className: "col-md-6 col-sm-10 col-xs-10" },
+                                    { className: "col-md-6 col-sm-6 col-xs-10" },
                                     "My Emails List:",
                                     this.state["private"] ? "Private" : "Public!"
                                 ),
                                 React.createElement(
                                     "div",
-                                    { className: "col-md-4 col-sm-10 col-xs-10",
-                                        style: { padding: "10px", borderStyle: "solid", borderWidth: "2px" } },
+                                    { className: "col-md-6 col-sm-6 col-xs-12",
+                                        style: { padding: "5px", borderStyle: "solid", borderWidth: "2px" } },
                                     React.createElement(
-                                        "h5",
+                                        "span",
                                         null,
                                         "Api Key: ",
                                         this.props.user.apiKey,
@@ -124,7 +125,9 @@ var MyEmailsList = (function (Component) {
                         React.createElement("hr", null),
                         React.createElement(
                             "div",
-                            { style: { marginBottom: "50px", padding: "5px" } },
+                            { className: "col-md-12 col-sm-12 col-xs-12",
+                                style: Object.assign({}, { marginBottom: "20px", padding: "5px",
+                                    marginTop: "-15px" }, backgroundShadow) },
                             this.state["private"] ? React.createElement(
                                 "button",
                                 { className: "btn btn-success col-md-12 col-sm-12 col-xs-12",
@@ -143,11 +146,13 @@ var MyEmailsList = (function (Component) {
                         React.createElement("br", null),
                         React.createElement(
                             "ul",
-                            { className: "list-group", style: { padding: "5px", marginTop: "15px" } },
+                            { className: "list-group col-md-12 col-sm-12 col-xs-12",
+                                style: { marginTop: "-65px" } },
                             this.state.tempArr.map(function (temp, i) {
                                 return React.createElement(
                                     "li",
-                                    { className: "list-group-item col-md-12 col-sm-12 col-xs-12", key: i },
+                                    { className: "list-group-item col-md-12 col-sm-12 col-xs-12",
+                                        key: i, style: backgroundShadow },
                                     React.createElement(
                                         "b",
                                         null,

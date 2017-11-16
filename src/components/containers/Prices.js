@@ -11,7 +11,6 @@ class Prices extends Component{
                     <div className="col-md-12 col-sm-12 col-xs-12">
                         <h2 style={{textAlign:'center'}}>Amazing Prices for Amazing People!</h2>
                         <p style={{textAlign:'center'}}>Start Free And Move From There!</p>
-
                         <div className="columns">
                             <ul className="price">
                                 <li className="header" style={{backgroundColor:'#8eb3e2'}} >Free</li>
@@ -32,7 +31,7 @@ class Prices extends Component{
                             <ul className="price">
                                 <li className="header" style={{backgroundColor:'#4CAF50'}}>Pro</li>
                                 <li className="grey">$ 9 / Month</li>
-                                <li>Up to 20.000 Emails A Month!</li>
+                                <li>Up to 30.000 Emails A Month!</li>
                                 <li>Slack Channel Support</li>
                                 <li>Email Support</li>
                                 <li></li>
@@ -47,7 +46,7 @@ class Prices extends Component{
                         <div className="columns">
                             <ul className="price">
                                 <li className="header" style={{backgroundColor:'#e05138'}} >Premium</li>
-                                <li className="grey">$ 27 / Month</li>
+                                <li className="grey">$ 0 / Month</li>
                                 <li>Up to 200.000 Emails a Month</li>
                                 <li>Slack Channel Support</li>
                                 <li>Email Support</li>

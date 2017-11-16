@@ -41,7 +41,7 @@ var NavBar = (function (Component) {
         logout: {
             value: function logout() {
                 var _this = this;
-                this.props.logout().then(function (date) {
+                this.props.logout().then(function (data) {
                     _this.props.history.push("/");
                     return;
                 })["catch"](function (err) {
@@ -126,6 +126,15 @@ var NavBar = (function (Component) {
                                         NavItem,
                                         { eventKey: 2 },
                                         "Sign Up"
+                                    )
+                                ),
+                                React.createElement(
+                                    LinkContainer,
+                                    { to: "/prices" },
+                                    React.createElement(
+                                        NavItem,
+                                        { eventKey: 2 },
+                                        "Pricing"
                                     )
                                 )
                             ) : React.createElement(

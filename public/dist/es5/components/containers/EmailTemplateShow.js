@@ -26,6 +26,7 @@ var JsAxios = _interopRequire(require("./JsAxios"));
 
 var JsSuperAgent = _interopRequire(require("./JsSuperAgent"));
 
+var backgroundShadow = require("./Css").backgroundShadow;
 var EmailTemplateShow = (function (Component) {
     function EmailTemplateShow(props) {
         _classCallCheck(this, EmailTemplateShow);
@@ -61,108 +62,133 @@ var EmailTemplateShow = (function (Component) {
                         { className: "row" },
                         this.state.loading ? React.createElement(Loader, null) : React.createElement(
                             "div",
-                            { className: "col-md-12 col-sm-12 col-xs-12" },
-                            React.createElement(
-                                "h1",
-                                null,
-                                "Need Info on an Email Template?"
-                            ),
-                            React.createElement("hr", null),
-                            React.createElement(
-                                "h3",
-                                null,
-                                "Email Title: ",
-                                this.state.email.emailTitle
-                            ),
+                            null,
                             React.createElement(
                                 "div",
-                                null,
+                                { className: "col-md-10 col-sm-10 col-xs-10",
+                                    style: Object.assign({}, backgroundShadow, { marginTop: "20px" }) },
                                 React.createElement(
-                                    "h3",
+                                    "h1",
                                     null,
-                                    "Email Body:"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "col-md-10 col-sm-12 col-xs-12", style: { padding: "2px", backgroundColor: "#cecccc" } },
                                     React.createElement(
-                                        "div",
-                                        { className: "col-md-12 col-sm-12 col-xs-12", style: { backgroundColor: "white", padding: "10px" } },
-                                        this.state.email.emailBody.split("\n").map(function (item, key) {
-                                            return React.createElement(
-                                                "span",
-                                                { style: { fontSize: "15px" }, key: key },
-                                                item,
-                                                React.createElement("br", null)
-                                            );
-                                        })
+                                        "strong",
+                                        null,
+                                        "Need Info on an Email Template?"
                                     )
-                                )
-                            ),
-                            React.createElement("br", null),
-                            " ",
-                            React.createElement("br", null),
-                            React.createElement(
-                                "div",
-                                null,
-                                React.createElement(
-                                    "h3",
-                                    null,
-                                    "Variables:"
                                 ),
-                                React.createElement(
-                                    "div",
-                                    { className: "col-md-10 col-sm-12 col-xs-12", style: { padding: "2px", backgroundColor: "#cecccc" } },
-                                    React.createElement(
-                                        "div",
-                                        { className: "col-md-12 col-sm-12 col-xs-12", style: { backgroundColor: "white", padding: "10px" } },
-                                        this.state.email.variablesComma
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                "div",
-                                { className: "col-md-10 col-sm-12 col-xs-12" },
                                 React.createElement("hr", null),
                                 React.createElement(
                                     "h3",
                                     null,
-                                    "Examples of calling the Api!"
+                                    React.createElement(
+                                        "strong",
+                                        null,
+                                        "Email Title:"
+                                    ),
+                                    " ",
+                                    this.state.email.emailTitle
                                 ),
                                 React.createElement(
-                                    "span",
+                                    "div",
                                     null,
-                                    "Note: Examples only available in Javascript, more coming soon!"
+                                    React.createElement(
+                                        "h3",
+                                        null,
+                                        React.createElement(
+                                            "strong",
+                                            null,
+                                            "Email Body:"
+                                        )
+                                    ),
+                                    React.createElement(
+                                        "div",
+                                        { className: "col-md-10 col-sm-12 col-xs-12", style: { padding: "2px", backgroundColor: "#cecccc" } },
+                                        React.createElement(
+                                            "div",
+                                            { className: "col-md-12 col-sm-12 col-xs-12", style: { backgroundColor: "white", padding: "10px" } },
+                                            this.state.email.emailBody.split("\n").map(function (item, key) {
+                                                return React.createElement(
+                                                    "span",
+                                                    { style: { fontSize: "15px" }, key: key },
+                                                    item,
+                                                    React.createElement("br", null)
+                                                );
+                                            })
+                                        )
+                                    )
                                 ),
+                                React.createElement("br", null),
                                 " ",
                                 React.createElement("br", null),
                                 React.createElement(
-                                    "span",
+                                    "div",
                                     null,
-                                    "Note: The Examples already include the variables and your key. You can drop this into your code."
+                                    React.createElement(
+                                        "h3",
+                                        null,
+                                        "Variables:"
+                                    ),
+                                    React.createElement(
+                                        "div",
+                                        { className: "col-md-10 col-sm-12 col-xs-12", style: { padding: "2px", backgroundColor: "#cecccc" } },
+                                        React.createElement(
+                                            "div",
+                                            { className: "col-md-12 col-sm-12 col-xs-12", style: { backgroundColor: "white", padding: "10px" } },
+                                            this.state.email.variablesComma
+                                        )
+                                    )
                                 ),
-                                React.createElement("br", null)
+                                React.createElement("div", { className: "col-md-12 col-sm-12 col-xs-12",
+                                    style: { height: "10px", marginTop: "10px", marginBottom: "10px" } })
                             ),
                             React.createElement(
                                 "div",
-                                { className: "col-md-10 col-sm-12 col-xs-12" },
+                                { className: "col-md-10 col-sm-10 col-xs-10",
+                                    style: backgroundShadow },
                                 React.createElement(
-                                    Tabs,
-                                    { defaultActiveKey: 2, id: "uncontrolled-tab-example" },
+                                    "div",
+                                    { className: "col-md-12 col-sm-12 col-xs-12" },
+                                    React.createElement("hr", null),
                                     React.createElement(
-                                        Tab,
-                                        { eventKey: 1, title: "JS-Axios" },
-                                        React.createElement(JsAxios, { apiKey: this.props.user.apiKey, email: this.state.email })
+                                        "h3",
+                                        null,
+                                        "Examples of calling the Api!"
                                     ),
                                     React.createElement(
-                                        Tab,
-                                        { eventKey: 2, title: "JS-SuperAgent" },
-                                        React.createElement(JsSuperAgent, { apiKey: this.props.user.apiKey, email: this.state.email })
+                                        "span",
+                                        null,
+                                        "Note: Examples only available in Javascript, more coming soon!"
+                                    ),
+                                    " ",
+                                    React.createElement("br", null),
+                                    React.createElement(
+                                        "span",
+                                        null,
+                                        "Note: The Examples already include the variables and your key. You can drop this into your code."
+                                    ),
+                                    React.createElement("br", null)
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { className: "col-md-12 col-sm-12 col-xs-12" },
+                                    React.createElement(
+                                        Tabs,
+                                        { defaultActiveKey: 2, id: "uncontrolled-tab-example" },
+                                        React.createElement(
+                                            Tab,
+                                            { eventKey: 1, title: "JS-Axios" },
+                                            React.createElement(JsAxios, { apiKey: this.props.user.apiKey, email: this.state.email })
+                                        ),
+                                        React.createElement(
+                                            Tab,
+                                            { eventKey: 2, title: "JS-SuperAgent" },
+                                            React.createElement(JsSuperAgent, { apiKey: this.props.user.apiKey, email: this.state.email })
+                                        )
                                     )
-                                )
-                            ),
-                            React.createElement("div", { className: "col-md-12 col-sm-12 col-xs-12",
-                                style: { height: "10px", marginTop: "15px", marginBottom: "15px" } })
+                                ),
+                                React.createElement("div", { className: "col-md-12 col-sm-12 col-xs-12",
+                                    style: { height: "10px", marginTop: "15px", marginBottom: "15px" } })
+                            )
                         )
                     )
                 );

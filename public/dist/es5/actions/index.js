@@ -40,6 +40,11 @@ module.exports = {
 			return dispatch(TurboClient.login(credentials, constants.CURRENT_USER_RECEIVED));
 		};
 	},
+	logoutUser: function () {
+		return function (dispatch) {
+			return dispatch(TurboClient.logout(constants.LOGOUT_USER));
+		};
+	},
 
 	currentUser: function () {
 		return function (dispatch) {

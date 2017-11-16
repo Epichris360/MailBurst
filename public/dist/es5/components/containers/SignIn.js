@@ -22,6 +22,10 @@ var Loader = _interopRequire(require("./Loader"));
 
 var DangerAlert = _interopRequire(require("./DangerAlert"));
 
+var _Css = require("./Css");
+
+var backgroundShadow = _Css.backgroundShadow;
+var input = _Css.input;
 var SignIn = (function (Component) {
     function SignIn(props) {
         _classCallCheck(this, SignIn);
@@ -63,13 +67,13 @@ var SignIn = (function (Component) {
                 return React.createElement(
                     "div",
                     { className: "container" },
-                    React.createElement("div", { style: { height: "60px" } }),
+                    React.createElement("div", { style: { height: "40px" } }),
                     React.createElement(
                         "div",
                         { className: "row" },
                         this.state.submitted ? React.createElement(Loader, null) : React.createElement(
                             "div",
-                            { className: "col-xs-12 col-sm-12 col-md-10 shadow-background-div" },
+                            { className: "col-xs-12 col-sm-12 col-md-10", style: backgroundShadow },
                             React.createElement(DangerAlert, { error: this.state.error, errorMessage: this.state.errorMessage }),
                             React.createElement(
                                 "h1",
@@ -86,10 +90,10 @@ var SignIn = (function (Component) {
                                 { htmlFor: "" },
                                 "Username:"
                             ),
-                            React.createElement("input", { className: "form-control",
+                            React.createElement("input", { className: "12u",
                                 type: "text",
                                 placeholder: "username",
-                                style: { background: "white", border: "1px solid #757372" },
+                                style: input,
                                 onChange: function (e) {
                                     return _this.setState({ username: e.target.value });
                                 }
@@ -99,10 +103,10 @@ var SignIn = (function (Component) {
                                 { htmlFor: "" },
                                 "Password:"
                             ),
-                            React.createElement("input", { className: "form-control",
+                            React.createElement("input", { className: "12u",
                                 type: "password",
                                 placeholder: "password",
-                                style: { background: "white", border: "1px solid #757372" },
+                                style: input,
                                 onChange: function (e) {
                                     return _this.setState({ password: e.target.value });
                                 }
@@ -142,5 +146,7 @@ var dispatchToProps = function (dispatch) {
         }
     };
 };
+
+
 
 module.exports = connect(null, dispatchToProps)(SignIn);

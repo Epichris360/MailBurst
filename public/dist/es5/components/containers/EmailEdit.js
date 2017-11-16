@@ -22,6 +22,10 @@ var Loader = _interopRequire(require("./Loader"));
 
 var DangerAlert = _interopRequire(require("./DangerAlert"));
 
+var _Css = require("./Css");
+
+var backgroundShadow = _Css.backgroundShadow;
+var input = _Css.input;
 var EmailEdit = (function (Component) {
     function EmailEdit(props) {
         _classCallCheck(this, EmailEdit);
@@ -132,12 +136,17 @@ var EmailEdit = (function (Component) {
                             { className: "row" },
                             React.createElement(
                                 "div",
-                                { className: "col-md-12 col-sm-12 col-xs-12" },
+                                { className: "col-md-12 col-sm-12 col-xs-12",
+                                    style: Object.assign({}, backgroundShadow, { marginTop: "35px" }) },
                                 React.createElement(DangerAlert, { error: this.state.error, errorMessage: this.state.errorMessage }),
                                 React.createElement(
                                     "h1",
                                     null,
-                                    "Update The Email Template!!!!:"
+                                    React.createElement(
+                                        "strong",
+                                        null,
+                                        "Update The Email Template!!!!:"
+                                    )
                                 ),
                                 React.createElement("hr", null),
                                 React.createElement(
@@ -145,9 +154,10 @@ var EmailEdit = (function (Component) {
                                     { htmlFor: "" },
                                     "Title for the Email:"
                                 ),
-                                React.createElement("input", { type: "text", className: "form-control",
+                                React.createElement("input", { type: "text", className: "12u",
                                     placeholder: "Title for the Email!",
                                     required: true,
+                                    style: input,
                                     value: this.state.emailTitle,
                                     onChange: function (e) {
                                         return _this.setState({ emailTitle: e.target.value });
@@ -159,10 +169,11 @@ var EmailEdit = (function (Component) {
                                     { htmlFor: "" },
                                     "Body for the Email:"
                                 ),
-                                React.createElement("textarea", { cols: "30", rows: "10", className: "form-control",
+                                React.createElement("textarea", { cols: "30", rows: "10", className: "12u",
                                     required: true,
                                     placeholder: "Format your *variables* like this!!, other than that write as you normally would. So lets say you want to add a customers *name* and maybe a discountcode *code*. you know to increase convesion or something",
                                     value: this.state.emailBody,
+                                    style: input,
                                     onChange: function (e) {
                                         return _this.setState({ emailBody: e.target.value });
                                     }
@@ -179,9 +190,10 @@ var EmailEdit = (function (Component) {
                                     ),
                                     " to the ones in the body(uppercase, lowercase, camelcase etc). Seperate them by commas no spaces!:  "
                                 ),
-                                React.createElement("input", { type: "text", className: "form-control",
+                                React.createElement("input", { type: "text", className: "12u",
                                     required: true,
                                     value: this.state.variablesComma,
+                                    style: input,
                                     onChange: function (e) {
                                         return _this.setState({ variablesComma: e.target.value });
                                     },
@@ -209,7 +221,9 @@ var EmailEdit = (function (Component) {
                                     { onClick: this.formatAndSendEmail.bind(this),
                                         className: "btn btn-success btn-lg pull-right" },
                                     "Update It!"
-                                )
+                                ),
+                                React.createElement("div", { className: "col-md-12 col-sm-12 col-xs-12",
+                                    style: { height: "10px", marginTop: "15px", marginBottom: "15px" } })
                             )
                         )
                     )

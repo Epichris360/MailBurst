@@ -41,7 +41,21 @@ gulp.task('copy-fonts', function(){
         .pipe(gulp.dest('./public/dist/css/fonts/'))
 })
 
-gulp.task('style', ['css', 'copy-fonts'], function(){})
+gulp.task('copy-fonts2', function(){
+    return gulp.src(
+            ['./public/css/fonts/**']
+        )
+        .pipe(gulp.dest('./public/dist/fonts/'))
+})
+
+gulp.task('copy-images', function(){
+    return gulp.src(
+            ['./public/css/images/**']
+        )
+        .pipe(gulp.dest('./public/dist/css/images/'))
+})
+
+gulp.task('style', ['css', 'copy-fonts','copy-images','copy-fonts2'], function(){})
 
 
 gulp.task('js', function(){

@@ -100,7 +100,7 @@ class HomePage extends Component {
 								<section>
 									<span className="icon featured fa-server"></span>
 									<header>
-										<h3>Built On To Of Turbo360</h3>
+										<h3>Built On Top Of Turbo360</h3>
 									</header>
 									<p>99.9% uptime, thanks to <a href="https://www.turbo360.co">Turbo360's</a> awesome platform constructed on top of AWS</p>
 									<br/>
@@ -132,7 +132,7 @@ class HomePage extends Component {
 									</header>
 									<p>Code Examples Include Your APIKEY, and Necesary Variables</p> 
 									<br/>
-									<p>Just copy and paste. Just like using StackOverFlow</p>
+									<p>Copy and paste. Just like using StackOverFlow</p>
 								</section>
 
 							</div>

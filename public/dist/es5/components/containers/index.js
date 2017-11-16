@@ -29,7 +29,11 @@ var NewNavBar = _interopRequire(require("./NewNavBar"));
 
 var EmailEdit = _interopRequire(require("./EmailEdit"));
 
-var Theme = _interopRequire(require("./Theme"));
+var HomePage = _interopRequire(require("./HomePage"));
+
+var Prices = _interopRequire(require("./Prices"));
+
+var Footer = _interopRequire(require("./Footer"));
 
 exports.Users = Users;
 exports.AutomatedEmailCreator = AutomatedEmailCreator;
@@ -37,11 +41,13 @@ exports.SignIn = SignIn;
 exports.SignUp = SignUp;
 exports.NavBar = NavBar;
 exports.MainPage = MainPage;
+exports.Prices = Prices;
 exports.MyEmailsList = MyEmailsList;
 exports.EmailTemplateShow = EmailTemplateShow;
 exports.NewNavBar = NewNavBar;
 exports.EmailEdit = EmailEdit;
-exports.Theme = Theme;
+exports.HomePage = HomePage;
+exports.Footer = Footer;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });

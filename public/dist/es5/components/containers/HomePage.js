@@ -28,17 +28,17 @@ var Nav = _reactBootstrap.Nav;
 var NavItem = _reactBootstrap.NavItem;
 var NavDropdown = _reactBootstrap.NavDropdown;
 var MenuItem = _reactBootstrap.MenuItem;
-var Theme = (function (Component) {
-	function Theme(props) {
-		_classCallCheck(this, Theme);
+var HomePage = (function (Component) {
+	function HomePage(props) {
+		_classCallCheck(this, HomePage);
 
-		_get(Object.getPrototypeOf(Theme.prototype), "constructor", this).call(this, props);
+		_get(Object.getPrototypeOf(HomePage.prototype), "constructor", this).call(this, props);
 		this.state = {};
 	}
 
-	_inherits(Theme, Component);
+	_inherits(HomePage, Component);
 
-	_prototypeProperties(Theme, null, {
+	_prototypeProperties(HomePage, null, {
 		render: {
 			value: function render() {
 				return React.createElement(
@@ -189,7 +189,7 @@ var Theme = (function (Component) {
 										React.createElement(
 											"span",
 											null,
-											"Get up in running in 10 or less"
+											"Get up in running in 10 minutes or less"
 										),
 										" ",
 										React.createElement("br", null),
@@ -203,7 +203,7 @@ var Theme = (function (Component) {
 										React.createElement(
 											"span",
 											null,
-											"Create as many templates or use public one's to send invites, promo codes, account sign up confirmations"
+											"Create as many templates or use public one's to send invites, promo codes, account sign up confirmations, Reminders or anything else you can think of"
 										),
 										" ",
 										React.createElement("br", null),
@@ -379,7 +379,9 @@ var Theme = (function (Component) {
 										React.createElement(
 											"p",
 											null,
-											"Public Templates Are Here To Help. Customize Them, Use Them, Send Them "
+											"Public Templates Are Here To Help. Customize Them, Use Them, Send Them ",
+											React.createElement("br", null),
+											"(Note: Only Text Templates Available Now. Graphic Templates Coming soon)"
 										),
 										React.createElement("br", null),
 										React.createElement(
@@ -454,8 +456,8 @@ var Theme = (function (Component) {
 									"li",
 									null,
 									React.createElement(
-										"a",
-										{ href: "#", className: "button special" },
+										Link,
+										{ to: "/signup", className: "button special" },
 										"Take My Money"
 									)
 								),
@@ -463,102 +465,10 @@ var Theme = (function (Component) {
 									"li",
 									null,
 									React.createElement(
-										"a",
-										{ href: "#", className: "button" },
+										Link,
+										{ to: "/prices", className: "button" },
 										"LOL Wut"
 									)
-								)
-							)
-						)
-					),
-					React.createElement(
-						"footer",
-						{ id: "footer" },
-						React.createElement(
-							"ul",
-							{ className: "icons" },
-							React.createElement(
-								"li",
-								null,
-								React.createElement(
-									"a",
-									{ href: "#", className: "icon circle fa-twitter" },
-									React.createElement(
-										"span",
-										{ className: "label" },
-										"Twitter"
-									)
-								)
-							),
-							React.createElement(
-								"li",
-								null,
-								React.createElement(
-									"a",
-									{ href: "#", className: "icon circle fa-facebook" },
-									React.createElement(
-										"span",
-										{ className: "label" },
-										"Facebook"
-									)
-								)
-							),
-							React.createElement(
-								"li",
-								null,
-								React.createElement(
-									"a",
-									{ href: "#", className: "icon circle fa-google-plus" },
-									React.createElement(
-										"span",
-										{ className: "label" },
-										"Google+"
-									)
-								)
-							),
-							React.createElement(
-								"li",
-								null,
-								React.createElement(
-									"a",
-									{ href: "#", className: "icon circle fa-github" },
-									React.createElement(
-										"span",
-										{ className: "label" },
-										"Github"
-									)
-								)
-							),
-							React.createElement(
-								"li",
-								null,
-								React.createElement(
-									"a",
-									{ href: "#", className: "icon circle fa-dribbble" },
-									React.createElement(
-										"span",
-										{ className: "label" },
-										"Dribbble"
-									)
-								)
-							)
-						),
-						React.createElement(
-							"ul",
-							{ className: "copyright" },
-							React.createElement(
-								"li",
-								null,
-								"© Cristian Segovia: segoviacristian23@hotmail.com"
-							),
-							React.createElement(
-								"li",
-								null,
-								"A big Thank you to: ",
-								React.createElement(
-									"a",
-									{ href: "http://html5up.net" },
-									"HTML5 UP"
 								)
 							)
 						)
@@ -570,7 +480,7 @@ var Theme = (function (Component) {
 		}
 	});
 
-	return Theme;
+	return HomePage;
 })(Component);
 
 var mapStateToProps = function (state) {
@@ -589,7 +499,7 @@ var dispatchToProps = function (dispatch) {
 };
 
 
-module.exports = withRouter(connect(mapStateToProps, dispatchToProps)(Theme));
+module.exports = withRouter(connect(mapStateToProps, dispatchToProps)(HomePage));
 /*}
 <section className="wrapper style3 container special">
 	<header className="major">
