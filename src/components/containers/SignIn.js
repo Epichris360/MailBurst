@@ -28,6 +28,7 @@ class SignIn extends Component{
             this.setState({error: true, submitted:false, errorMessage: err.message})
             return
         })
+        return
     }
     render(){
         return(

@@ -11,7 +11,7 @@ class EmailTemplateShow extends Component{
     constructor(props){
         super(props)
         this.state = {
-            email:null, loading: true
+            email:null, loading: true, template:'none'
         }
     }
     componentDidMount(){
@@ -59,6 +59,23 @@ class EmailTemplateShow extends Component{
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-md-12 col-sm-12 col-xs-12" style={{marginTop:'15px'}} >
+                                    Which Template?: <select className="btn btn-default" onChange={e => this.setState({template: e .target.value}) }>
+                                        <option value="none">none</option>
+                                        {
+                                            this.props.templates.map( (t,i) => {
+                                                return( 
+                                                    <option key={i} value={`${t.name}`}>
+                                                        {t.name}
+                                                    </option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                    <button onClick={()=>console.log('template',this.state.template)} >
+                                        this.state.template
+                                    </button>
+                                </div>
                                 <div className="col-md-12 col-sm-12 col-xs-12" 
                                     style={{height:'10px',marginTop:'10px', marginBottom:'10px'}} >
                                 </div>
@@ -97,9 +114,9 @@ class EmailTemplateShow extends Component{
 }
 
 const mapStateToProps = state => {
-    const { emails,user } = state
+    const { emails,user,templates } = state
     return{
-        emails, user
+        emails, user, templates
     }
 }
 

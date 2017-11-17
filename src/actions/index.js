@@ -61,7 +61,19 @@ export default {
 		return dispatch => {
 			return dispatch(TurboClient.putRequest('emailTemplates',orig,update,constants.UPDATE_EMAIL))
 		}
-	}/*,
+	},
+	createTemplate: params => {
+		return dispatch => {
+			return dispatch( TurboClient.postRequest('templates', params, constants.NEW_GRAPHIC_TEMPLATE) )
+		}
+	},
+	getTemplates: (params) => {
+		return dispatch => {
+			return dispatch( TurboClient.getRequest('templates',params,constants.GET_GRAPHIC_TEMPLATE) )
+		}
+	}
+	
+	/*,
 	updateUser: (user,params) => {
 		return dispatch => {
 			return dispatch(TurboClient.putRequest('user',user,params))

@@ -35,12 +35,18 @@ class NavBar extends Component{
                         {
                             this.props.user.id != '' ?  
                             <Nav>
-                                <NavDropdown eventKey={1} title="Emails Options" id="basic-nav-dropdown">
+                                <NavDropdown eventKey={1} title="Emails and Template Options" id="basic-nav-dropdown">
                                     <LinkContainer to="/email-creator">
                                         <MenuItem eventKey={1.1}>Email Creator</MenuItem>
                                     </LinkContainer>
                                     <LinkContainer to="/emails-list">
                                         <MenuItem eventKey={1.2} >Email List</MenuItem>
+                                    </LinkContainer>
+                                    <LinkContainer to="createGraphicTemplate" >
+                                        <MenuItem eventKey={1.3} >Template Creation</MenuItem>
+                                    </LinkContainer>
+                                    <LinkContainer to="/templates-list" >
+                                        <MenuItem eventKey={1.4} >Templates List</MenuItem>
                                     </LinkContainer>
                                 </NavDropdown>
                             </Nav> : null

@@ -6,9 +6,10 @@
 
 import userReducer from './userReducer'
 import emailsReducer from './emailsReducer'
+import templatesReducer from './templatesReducer'
 
 export {
 	
-	userReducer, emailsReducer
+	userReducer, emailsReducer, templatesReducer
 	
 }

@@ -5,7 +5,7 @@ import { Link }             from 'react-router-dom'
 import Loader               from './Loader'
 import { backgroundShadow } from './Css'
 
-class MyEmailsList extends Component {
+class ListGraphicTemplate extends Component{
     constructor(props){
         super(props)
         this.state = {
@@ -13,25 +13,25 @@ class MyEmailsList extends Component {
         }
     }
     componentDidMount(){
-        if(this.props.emails.length > 0){
-            const filtered = this.props.emails.filter( email => email.category == 'private' )
+        if(this.props.templates.length > 0){
+            const filtered = this.props.templates.filter( temp => temp.category == 'private' )
             this.setState({tempArr: filtered, loading: false})
             return
         }
-        this.props.getEmails({user_id: this.props.user.id})
+        this.props.getTemplates({user_id: this.props.user.id})
         .then(data => {
             //gets customers private email templates
             return 
         })
         .then( () => {
-            this.props.getEmails({category:'public'})
+            this.props.getTemplates({category:'public'})
             .then(data => {
                 //gets public email templates
                 return
             })
             .then( () => {
                 //filters for only private email templates
-                const filtered = this.props.emails.filter( email => email.category == 'private' )
+                const filtered = this.props.templates.filter( t => t.category == 'private' )
                 this.setState({tempArr: filtered, loading: false})
                 return
             })
@@ -44,7 +44,7 @@ class MyEmailsList extends Component {
     }
     switch(which){
         //switches between the categories of templates
-        const filtered = this.props.emails.filter( emails => emails.category == which )
+        const filtered = this.props.templates.filter( t => t.category == which )
         //false == public and true == private
         if(this.state.private){
             //was true as in switching from public to private
@@ -56,6 +56,7 @@ class MyEmailsList extends Component {
         return
     }
     render(){
+        
         return(
             <div className="container" >
                 {
@@ -64,7 +65,7 @@ class MyEmailsList extends Component {
                         <div  >
                             <div className="col-md-12 col-sm-12 col-xs-12" 
                                 style={Object.assign({},{ padding:'10px'},backgroundShadow)}>
-                                <h2 className="col-md-6 col-sm-6 col-xs-10" >My Emails List: 
+                                <h2 className="col-md-6 col-sm-6 col-xs-10" >My Templates List: 
                                     {this.state.private ? 'Private' : 'Public!'}
                                 </h2>
                                 <div className="col-md-6 col-sm-6 col-xs-12" 
@@ -82,10 +83,10 @@ class MyEmailsList extends Component {
                                 this.state.private ? 
                                     <button className="btn btn-success col-md-12 col-sm-12 col-xs-12" 
                                         onClick={ this.switch.bind(this,'public') }
-                                    >Switch to Public Email Templates</button> :
+                                    >Switch to Public Graphic Templates</button> :
                                     <button className="btn btn-success col-md-12 col-sm-12 col-xs-12" 
                                         onClick={ this.switch.bind(this,'private') }
-                                    >Switch to Private Email Templates</button> 
+                                    >Switch to Private Graphic Templates</button> 
                             }
                         </div>
                         <br/>
@@ -97,9 +98,9 @@ class MyEmailsList extends Component {
                                     return(
                                         <li className="list-group-item col-md-12 col-sm-12 col-xs-12" 
                                             key={i} style={backgroundShadow} >
-                                            <b>Email Title:</b>{` ${temp.emailTitle.substr(0,30)}...`}
+                                            <b>Template Name:</b>{` ${temp.name.substr(0,30)}...`}
                                             
-                                            <Link className="btn btn-success btn-xs pull-right" to={`/email/${temp.email_id}`}> 
+                                            <Link className="btn btn-success btn-xs pull-right" to={`/template/show/${temp.template_id}`}> 
                                                 Docs And See
                                             </Link>
                                             {
@@ -121,18 +122,16 @@ class MyEmailsList extends Component {
 }
 
 const mapStateToProps = state => {
-    const { emails, user, templates } = state
+    const { user, templates } = state
     return{
-        emails, user
+        user, templates
     }
 }
 
 const propsToState = dispatch => {
     return{
-        //user_id or category:public
-        getEmails: (params) => dispatch(actions.getEmails(params)),
-        updateUser:(user,params) => dispatch(actions.updateUser(user,params))
+        getTemplates: params => dispatch( actions.getTemplates(params) )
     }
 }
 
-export default connect(mapStateToProps,propsToState)(MyEmailsList)
+export default connect(mapStateToProps, propsToState)(ListGraphicTemplate)

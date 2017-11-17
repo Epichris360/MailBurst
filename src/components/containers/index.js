@@ -18,10 +18,14 @@ import EmailEdit 			 from './EmailEdit'
 import HomePage				 from './HomePage'
 import Prices				 from './Prices'
 import Footer			     from './Footer'
+import CreateGraphicTemplate from './CreateGraphicTemplate'
+import ListGraphicTemplate	 from './ListGraphicTemplate'
+import GraphicTemplateShow   from './GraphicTemplateShow'
 
 export {
 
 	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, Prices,
-	MyEmailsList, EmailTemplateShow, NewNavBar, EmailEdit, HomePage, Footer
+	MyEmailsList, EmailTemplateShow, NewNavBar, EmailEdit, HomePage, Footer,
+	CreateGraphicTemplate, ListGraphicTemplate, GraphicTemplateShow
 	
 }
