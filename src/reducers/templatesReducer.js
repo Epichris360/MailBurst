@@ -15,12 +15,12 @@ export default (state = initialState, action) => {
             newState = [...state, ...action.data]
             return newState
 
-        /*case constants.UPDATE_EMAIL:
+        case constants.UPDATE_GR_TEMPLATE:
         //const tasksIndex = projectChange.tasks.map( task => task.task_id ).indexOf( t.task_id )
             newState = state
-            const index = state.map(e => e.email_id).indexOf(action.data.email_id)
+            const index = newState.map(t => t.id).indexOf(action.data.id)
             newState[index] = action.data
-            return newState*/
+            return newState
 		default:
 			return state
 	}

@@ -22,61 +22,28 @@ var Link = require("react-router-dom").Link;
 var Loader = _interopRequire(require("./Loader"));
 
 var backgroundShadow = require("./Css").backgroundShadow;
-var MyEmailsList = (function (Component) {
-    function MyEmailsList(props) {
-        _classCallCheck(this, MyEmailsList);
+var ListGraphicTemplate = (function (Component) {
+    function ListGraphicTemplate(props) {
+        _classCallCheck(this, ListGraphicTemplate);
 
-        _get(Object.getPrototypeOf(MyEmailsList.prototype), "constructor", this).call(this, props);
+        _get(Object.getPrototypeOf(ListGraphicTemplate.prototype), "constructor", this).call(this, props);
         this.state = {
             tempArr: [], "private": true, showModal: false, tempToShowInModal: null, loading: true
         };
     }
 
-    _inherits(MyEmailsList, Component);
+    _inherits(ListGraphicTemplate, Component);
 
-    _prototypeProperties(MyEmailsList, null, {
+    _prototypeProperties(ListGraphicTemplate, null, {
         componentDidMount: {
             value: function componentDidMount() {
-                var _this = this;
-                if (this.props.emails.length > 0) {
-                    var filtered = this.props.emails.filter(function (email) {
-                        return email.category == "private";
+                if (this.props.templates.length > 0) {
+                    var filtered = this.props.templates.filter(function (temp) {
+                        return temp.category == "private";
                     });
                     this.setState({ tempArr: filtered, loading: false });
                     return;
                 }
-                this.props.getEmails({ user_id: this.props.user.id }).then(function (data) {
-                    //gets customers private email templates
-                    return;
-                }).then(function () {
-                    _this.props.getEmails({ category: "public" }).then(function (data) {
-                        //gets public email templates
-                        return;
-                    }).then(function () {
-                        //filters for only private email templates
-                        var filtered = _this.props.emails.filter(function (email) {
-                            return email.category == "private";
-                        });
-                        _this.setState({ tempArr: filtered, loading: false });
-                        return;
-                    });
-                    return;
-                }).then(function () {
-                    _this.props.getTemplates({ user_id: _this.props.user.id }).then(function (data) {
-                        //gets customers private email templates
-                        return;
-                    }).then(function () {
-                        _this.props.getTemplates({ category: "public" }).then(function (data) {
-                            //gets public email templates
-                            return;
-                        });
-                        return;
-                    });
-                    return;
-                })["catch"](function (err) {
-                    console.log("err", err.message);
-                    return;
-                });
             },
             writable: true,
             configurable: true
@@ -84,8 +51,8 @@ var MyEmailsList = (function (Component) {
         "switch": {
             value: function _switch(which) {
                 //switches between the categories of templates
-                var filtered = this.props.emails.filter(function (emails) {
-                    return emails.category == which;
+                var filtered = this.props.templates.filter(function (t) {
+                    return t.category == which;
                 });
                 //false == public and true == private
                 if (this.state["private"]) {
@@ -118,7 +85,7 @@ var MyEmailsList = (function (Component) {
                                 React.createElement(
                                     "h2",
                                     { className: "col-md-6 col-sm-6 col-xs-10" },
-                                    "My Emails List:",
+                                    "My Templates List:",
                                     this.state["private"] ? "Private" : "Public!"
                                 ),
                                 React.createElement(
@@ -146,13 +113,13 @@ var MyEmailsList = (function (Component) {
                                 { className: "btn btn-success col-md-12 col-sm-12 col-xs-12",
                                     onClick: this["switch"].bind(this, "public")
                                 },
-                                "Switch to Public Email Templates"
+                                "Switch to Public Graphic Templates"
                             ) : React.createElement(
                                 "button",
                                 { className: "btn btn-success col-md-12 col-sm-12 col-xs-12",
                                     onClick: this["switch"].bind(this, "private")
                                 },
-                                "Switch to Private Email Templates"
+                                "Switch to Private Graphic Templates"
                             )
                         ),
                         React.createElement("br", null),
@@ -169,17 +136,18 @@ var MyEmailsList = (function (Component) {
                                     React.createElement(
                                         "b",
                                         null,
-                                        "Email Title:"
+                                        "Template Name:"
                                     ),
-                                    " " + temp.emailTitle.substr(0, 30) + "...",
+                                    " " + temp.name.substr(0, 30) + "...",
                                     React.createElement(
                                         Link,
-                                        { className: "btn btn-success btn-xs pull-right", to: "/email/" + temp.email_id },
+                                        { className: "btn btn-success btn-xs pull-right", to: "/template/show/" + temp.template_id },
                                         "Docs And See"
                                     ),
                                     temp.category == "private" ? React.createElement(
                                         Link,
-                                        { style: { marginRight: "10px" }, className: "btn btn-default btn-xs pull-right", to: "/email/" + temp.email_id + "/edit" },
+                                        { style: { marginRight: "10px" }, className: "btn btn-default btn-xs pull-right",
+                                            to: "/template/" + temp.id + "/edit" },
                                         "Update It!!"
                                     ) : null
                                 );
@@ -193,31 +161,23 @@ var MyEmailsList = (function (Component) {
         }
     });
 
-    return MyEmailsList;
+    return ListGraphicTemplate;
 })(Component);
 
 var mapStateToProps = function (state) {
-    var emails = state.emails;
     var user = state.user;
     var templates = state.templates;
     return {
-        emails: emails, user: user, templates: templates
+        user: user, templates: templates
     };
 };
 
 var propsToState = function (dispatch) {
     return {
-        //user_id or category:public
-        getEmails: function (params) {
-            return dispatch(actions.getEmails(params));
-        },
-        updateUser: function (user, params) {
-            return dispatch(actions.updateUser(user, params));
-        },
         getTemplates: function (params) {
             return dispatch(actions.getTemplates(params));
         }
     };
 };
 
-module.exports = connect(mapStateToProps, propsToState)(MyEmailsList);
+module.exports = connect(mapStateToProps, propsToState)(ListGraphicTemplate);

@@ -12,8 +12,8 @@ class GraphicTemplateShow extends Component{
         }
     }
     componentDidMount(){
-        //will have to change if srr
-        const template = this.props.templates.filter(t => t.template_id == this.props.match.params.template_id)[0]
+        //will have to change if srr 
+        const template = this.props.templates.filter(t => t.id == this.props.match.params.template_id)[0]
         this.setState({template, loading:false})
     }
     render(){

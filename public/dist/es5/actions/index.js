@@ -67,11 +67,28 @@ module.exports = {
 		return function (dispatch) {
 			return dispatch(TurboClient.putRequest("emailTemplates", orig, update, constants.UPDATE_EMAIL));
 		};
-	} /*,
-   updateUser: (user,params) => {
-   return dispatch => {
-   	return dispatch(TurboClient.putRequest('user',user,params))
-   }
-   }*/
+	},
+	createTemplate: function (params) {
+		return function (dispatch) {
+			return dispatch(TurboClient.postRequest("templates", params, constants.NEW_GRAPHIC_TEMPLATE));
+		};
+	},
+	getTemplates: function (params) {
+		return function (dispatch) {
+			return dispatch(TurboClient.getRequest("templates", params, constants.GET_GRAPHIC_TEMPLATE));
+		};
+	},
+	updateTemplate: function (orig, update) {
+		return function (dispatch) {
+			return dispatch(TurboClient.putRequest("templates", orig, update, constants.UPDATE_GR_TEMPLATE));
+		};
+	}
+
+	/*,
+ updateUser: (user,params) => {
+ 	return dispatch => {
+ 		return dispatch(TurboClient.putRequest('user',user,params))
+ 	}
+ }*/
 
 };

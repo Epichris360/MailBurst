@@ -37,6 +37,22 @@ class MyEmailsList extends Component {
             })
             return
         })
+        .then( () =>  {
+            this.props.getTemplates({user_id: this.props.user.id})
+            .then(data => {
+                //gets customers private email templates
+                return 
+            })
+            .then( () => {
+                this.props.getTemplates({category:'public'})
+                .then(data => {
+                    //gets public email templates
+                    return
+                })
+                return
+            })
+            return
+        })
         .catch(err => {
             console.log('err',err.message)
             return
@@ -123,15 +139,16 @@ class MyEmailsList extends Component {
 const mapStateToProps = state => {
     const { emails, user, templates } = state
     return{
-        emails, user
+        emails, user, templates
     }
 }
 
 const propsToState = dispatch => {
     return{
         //user_id or category:public
-        getEmails: (params) => dispatch(actions.getEmails(params)),
-        updateUser:(user,params) => dispatch(actions.updateUser(user,params))
+        getEmails:    (params)      => dispatch( actions.getEmails( params ) ),
+        updateUser:   (user,params) => dispatch( actions.updateUser( user,params ) ),
+        getTemplates: params        => dispatch( actions.getTemplates( params ) )
     }
 }
 

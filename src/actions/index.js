@@ -71,6 +71,11 @@ export default {
 		return dispatch => {
 			return dispatch( TurboClient.getRequest('templates',params,constants.GET_GRAPHIC_TEMPLATE) )
 		}
+	},
+	updateTemplate: (orig, update ) => {
+		return dispatch => {
+			return dispatch( TurboClient.putRequest('templates',orig,update,constants.UPDATE_GR_TEMPLATE) )
+		}
 	}
 	
 	/*,

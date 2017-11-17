@@ -57,6 +57,7 @@ var SignIn = (function (Component) {
                     _this.setState({ error: true, submitted: false, errorMessage: err.message });
                     return;
                 });
+                return;
             },
             writable: true,
             configurable: true

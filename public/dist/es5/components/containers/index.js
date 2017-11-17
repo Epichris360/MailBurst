@@ -35,6 +35,14 @@ var Prices = _interopRequire(require("./Prices"));
 
 var Footer = _interopRequire(require("./Footer"));
 
+var CreateGraphicTemplate = _interopRequire(require("./CreateGraphicTemplate"));
+
+var ListGraphicTemplate = _interopRequire(require("./ListGraphicTemplate"));
+
+var GraphicTemplateShow = _interopRequire(require("./GraphicTemplateShow"));
+
+var GraphicTemplateUpdate = _interopRequire(require("./GraphicTemplateUpdate"));
+
 exports.Users = Users;
 exports.AutomatedEmailCreator = AutomatedEmailCreator;
 exports.SignIn = SignIn;
@@ -48,6 +56,10 @@ exports.NewNavBar = NewNavBar;
 exports.EmailEdit = EmailEdit;
 exports.HomePage = HomePage;
 exports.Footer = Footer;
+exports.CreateGraphicTemplate = CreateGraphicTemplate;
+exports.ListGraphicTemplate = ListGraphicTemplate;
+exports.GraphicTemplateShow = GraphicTemplateShow;
+exports.GraphicTemplateUpdate = GraphicTemplateUpdate;
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });

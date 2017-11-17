@@ -18,29 +18,6 @@ class ListGraphicTemplate extends Component{
             this.setState({tempArr: filtered, loading: false})
             return
         }
-        this.props.getTemplates({user_id: this.props.user.id})
-        .then(data => {
-            //gets customers private email templates
-            return 
-        })
-        .then( () => {
-            this.props.getTemplates({category:'public'})
-            .then(data => {
-                //gets public email templates
-                return
-            })
-            .then( () => {
-                //filters for only private email templates
-                const filtered = this.props.templates.filter( t => t.category == 'private' )
-                this.setState({tempArr: filtered, loading: false})
-                return
-            })
-            return
-        })
-        .catch(err => {
-            console.log('err',err.message)
-            return
-        })
     }
     switch(which){
         //switches between the categories of templates
@@ -105,7 +82,8 @@ class ListGraphicTemplate extends Component{
                                             </Link>
                                             {
                                                 temp.category == "private" ? 
-                                                <Link style={{marginRight:'10px'}} className="btn btn-default btn-xs pull-right" to={`/email/${temp.email_id}/edit`} >
+                                                <Link style={{marginRight:'10px'}} className="btn btn-default btn-xs pull-right" 
+                                                    to={`/template/${temp.id}/edit`} >
                                                     Update It!!
                                                 </Link> : null
                                             }

@@ -21,11 +21,12 @@ import Footer			     from './Footer'
 import CreateGraphicTemplate from './CreateGraphicTemplate'
 import ListGraphicTemplate	 from './ListGraphicTemplate'
 import GraphicTemplateShow   from './GraphicTemplateShow'
+import GraphicTemplateUpdate from './GraphicTemplateUpdate'
 
 export {
 
 	Users, AutomatedEmailCreator, SignIn, SignUp, NavBar, MainPage, Prices,
 	MyEmailsList, EmailTemplateShow, NewNavBar, EmailEdit, HomePage, Footer,
-	CreateGraphicTemplate, ListGraphicTemplate, GraphicTemplateShow
+	CreateGraphicTemplate, ListGraphicTemplate, GraphicTemplateShow, GraphicTemplateUpdate
 	
 }

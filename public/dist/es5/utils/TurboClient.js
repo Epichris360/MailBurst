@@ -6,7 +6,7 @@ var turbo = _interopRequire(require("turbo360"));
 
 var pkg = _interopRequire(require("../../package.json"));
 
-var APP_ID = pkg.app || "";
+var APP_ID = "5a05eabf2d98b70012f56ad6"; //pkg.app || ''
 
 var postRequest = function (resource, params, actionType) {
 	return function (dispatch) {

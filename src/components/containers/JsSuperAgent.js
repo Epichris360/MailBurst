@@ -13,6 +13,7 @@ class JsAxios extends Component{
                         &nbsp;&nbsp;{`'to': 'awesomecustomer@something.com',`} <br/>
                         &nbsp;&nbsp;{`'from': 'unpaidintern@bigstartup.com',`} <br/>
                         &nbsp;&nbsp;{`'apiKey': '${this.props.apiKey}',`} <br/>
+                        &nbsp;&nbsp;{`'temp_id': '${this.props.template_id}',`} <br/>
                         &nbsp;&nbsp;{`'fromName': 'unpaidintern',`} <br/>
                         {  
                             this.props.email.variablesComma.split(',').map( (v,i) => {

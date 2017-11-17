@@ -43,7 +43,7 @@ class NavBar extends Component{
                                         <MenuItem eventKey={1.2} >Email List</MenuItem>
                                     </LinkContainer>
                                     <LinkContainer to="createGraphicTemplate" >
-                                        <MenuItem eventKey={1.3} >Template Creation</MenuItem>
+                                        <MenuItem eventKey={1.3} >Template Creator</MenuItem>
                                     </LinkContainer>
                                     <LinkContainer to="/templates-list" >
                                         <MenuItem eventKey={1.4} >Templates List</MenuItem>

@@ -33,7 +33,7 @@ var EmailTemplateShow = (function (Component) {
 
         _get(Object.getPrototypeOf(EmailTemplateShow.prototype), "constructor", this).call(this, props);
         this.state = {
-            email: null, loading: true
+            email: null, loading: true, template_id: ""
         };
     }
 
@@ -54,6 +54,7 @@ var EmailTemplateShow = (function (Component) {
         },
         render: {
             value: function render() {
+                var _this = this;
                 return React.createElement(
                     "div",
                     { className: "container" },
@@ -138,6 +139,30 @@ var EmailTemplateShow = (function (Component) {
                                         )
                                     )
                                 ),
+                                React.createElement(
+                                    "div",
+                                    { className: "col-md-12 col-sm-12 col-xs-12", style: { marginTop: "15px" } },
+                                    "Which Template?: ",
+                                    React.createElement(
+                                        "select",
+                                        { className: "btn btn-default",
+                                            onChange: function (e) {
+                                                return _this.setState({ template_id: e.target.value });
+                                            } },
+                                        React.createElement(
+                                            "option",
+                                            { value: "" },
+                                            "none"
+                                        ),
+                                        this.props.templates.map(function (t, i) {
+                                            return React.createElement(
+                                                "option",
+                                                { key: i, value: t.id },
+                                                t.name
+                                            );
+                                        })
+                                    )
+                                ),
                                 React.createElement("div", { className: "col-md-12 col-sm-12 col-xs-12",
                                     style: { height: "10px", marginTop: "10px", marginBottom: "10px" } })
                             ),
@@ -177,12 +202,18 @@ var EmailTemplateShow = (function (Component) {
                                         React.createElement(
                                             Tab,
                                             { eventKey: 1, title: "JS-Axios" },
-                                            React.createElement(JsAxios, { apiKey: this.props.user.apiKey, email: this.state.email })
+                                            React.createElement(JsAxios, { apiKey: this.props.user.apiKey,
+                                                template_id: this.state.template_id,
+                                                email: this.state.email
+                                            })
                                         ),
                                         React.createElement(
                                             Tab,
                                             { eventKey: 2, title: "JS-SuperAgent" },
-                                            React.createElement(JsSuperAgent, { apiKey: this.props.user.apiKey, email: this.state.email })
+                                            React.createElement(JsSuperAgent, { apiKey: this.props.user.apiKey,
+                                                template_id: this.state.template_id,
+                                                email: this.state.email
+                                            })
                                         )
                                     )
                                 ),
@@ -204,8 +235,9 @@ var EmailTemplateShow = (function (Component) {
 var mapStateToProps = function (state) {
     var emails = state.emails;
     var user = state.user;
+    var templates = state.templates;
     return {
-        emails: emails, user: user
+        emails: emails, user: user, templates: templates
     };
 };
 

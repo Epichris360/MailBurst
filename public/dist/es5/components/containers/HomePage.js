@@ -338,7 +338,7 @@ var HomePage = (function (Component) {
 											React.createElement(
 												"h3",
 												null,
-												"Built On To Of Turbo360"
+												"Built On Top Of Turbo360"
 											)
 										),
 										React.createElement(
@@ -416,7 +416,7 @@ var HomePage = (function (Component) {
 										React.createElement(
 											"p",
 											null,
-											"Just copy and paste. Just like using StackOverFlow"
+											"Copy and paste. Just like using StackOverFlow"
 										)
 									)
 								)

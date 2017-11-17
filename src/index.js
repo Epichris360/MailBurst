@@ -6,7 +6,7 @@ import Intro from './components/Intro'
 import { Switch, BrowserRouter as Router, Route  } from 'react-router-dom'
 import { AutomatedEmailCreator, SignIn, SignUp, NavBar, EmailEdit, Prices, Footer, 
 	CreateGraphicTemplate, MainPage, MyEmailsList, EmailTemplateShow, NewNavBar, HomePage, 
-	ListGraphicTemplate, GraphicTemplateShow } from './components/containers'
+	ListGraphicTemplate, GraphicTemplateShow, GraphicTemplateUpdate } from './components/containers'
 
 const app = (
 	<Provider store={store.configure(null)}>
@@ -26,6 +26,7 @@ const app = (
 						<Route path="/createGraphicTemplate"	  component={CreateGraphicTemplate}/>
 						<Route path="/templates-list" 			  component={ListGraphicTemplate} />
 						<Route path="/template/show/:template_id" component={GraphicTemplateShow} />
+						<Route path="/template/:template_id/edit" component={GraphicTemplateUpdate} />
 					</Switch>
 				</div>
 				<Footer />

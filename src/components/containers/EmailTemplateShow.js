@@ -11,7 +11,7 @@ class EmailTemplateShow extends Component{
     constructor(props){
         super(props)
         this.state = {
-            email:null, loading: true, template:'none'
+            email:null, loading: true, template_id:''
         }
     }
     componentDidMount(){
@@ -60,21 +60,19 @@ class EmailTemplateShow extends Component{
                                     </div>
                                 </div>
                                 <div className="col-md-12 col-sm-12 col-xs-12" style={{marginTop:'15px'}} >
-                                    Which Template?: <select className="btn btn-default" onChange={e => this.setState({template: e .target.value}) }>
-                                        <option value="none">none</option>
+                                    Which Template?: <select className="btn btn-default" 
+                                            onChange={e => this.setState({template_id: e.target.value}) }>
+                                        <option value={''}>none</option>
                                         {
                                             this.props.templates.map( (t,i) => {
                                                 return( 
-                                                    <option key={i} value={`${t.name}`}>
+                                                    <option key={i} value={t.id}>
                                                         {t.name}
                                                     </option>
                                                 )
                                             })
                                         }
                                     </select>
-                                    <button onClick={()=>console.log('template',this.state.template)} >
-                                        this.state.template
-                                    </button>
                                 </div>
                                 <div className="col-md-12 col-sm-12 col-xs-12" 
                                     style={{height:'10px',marginTop:'10px', marginBottom:'10px'}} >
@@ -93,10 +91,16 @@ class EmailTemplateShow extends Component{
                                 <div className="col-md-12 col-sm-12 col-xs-12">
                                     <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
                                         <Tab eventKey={1} title="JS-Axios">
-                                            <JsAxios apiKey={this.props.user.apiKey} email={this.state.email} />
+                                            <JsAxios apiKey={this.props.user.apiKey} 
+                                                template_id={this.state.template_id}
+                                                email={this.state.email} 
+                                            />
                                         </Tab>
                                         <Tab eventKey={2} title="JS-SuperAgent">
-                                            <JsSuperAgent apiKey={this.props.user.apiKey} email={this.state.email} />
+                                            <JsSuperAgent apiKey={this.props.user.apiKey} 
+                                                template_id={this.state.template_id}
+                                                email={this.state.email} 
+                                            />
                                         </Tab>
                                     </Tabs>
                                 </div>

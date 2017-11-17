@@ -86,7 +86,7 @@ var NavBar = (function (Component) {
                                 null,
                                 React.createElement(
                                     NavDropdown,
-                                    { eventKey: 1, title: "Emails Options", id: "basic-nav-dropdown" },
+                                    { eventKey: 1, title: "Emails and Template Options", id: "basic-nav-dropdown" },
                                     React.createElement(
                                         LinkContainer,
                                         { to: "/email-creator" },
@@ -103,6 +103,24 @@ var NavBar = (function (Component) {
                                             MenuItem,
                                             { eventKey: 1.2 },
                                             "Email List"
+                                        )
+                                    ),
+                                    React.createElement(
+                                        LinkContainer,
+                                        { to: "createGraphicTemplate" },
+                                        React.createElement(
+                                            MenuItem,
+                                            { eventKey: 1.3 },
+                                            "Template Creation"
+                                        )
+                                    ),
+                                    React.createElement(
+                                        LinkContainer,
+                                        { to: "/templates-list" },
+                                        React.createElement(
+                                            MenuItem,
+                                            { eventKey: 1.4 },
+                                            "Templates List"
                                         )
                                     )
                                 )

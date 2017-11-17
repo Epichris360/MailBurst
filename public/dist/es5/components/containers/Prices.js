@@ -109,7 +109,7 @@ var Prices = (function (Component) {
                                     React.createElement(
                                         "li",
                                         null,
-                                        "Up to 20.000 Emails A Month!"
+                                        "Up to 30.000 Emails A Month!"
                                     ),
                                     React.createElement(
                                         "li",
@@ -147,7 +147,7 @@ var Prices = (function (Component) {
                                     React.createElement(
                                         "li",
                                         { className: "grey" },
-                                        "$ 27 / Month"
+                                        "$ 0 / Month"
                                     ),
                                     React.createElement(
                                         "li",

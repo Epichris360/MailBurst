@@ -25,7 +25,8 @@ gulp.task('css', function(){
                 './public/css/ie8.css',
                 './public/css/ie9.css',
                 './public/css/main.css',
-                './public/css/site.css'
+                './public/css/site.css',
+                './public/css/loaderbar.css'
             ]
         )
         .pipe(minifyCSS())

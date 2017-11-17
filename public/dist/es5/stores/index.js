@@ -13,6 +13,7 @@ var _reducers = require("../reducers");
 
 var userReducer = _reducers.userReducer;
 var emailsReducer = _reducers.emailsReducer;
+var templatesReducer = _reducers.templatesReducer;
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -30,7 +31,8 @@ module.exports = {
 
 		var reducers = combineReducers({ // insert reducers here
 			user: userReducer,
-			emails: emailsReducer
+			emails: emailsReducer,
+			templates: templatesReducer
 		});
 
 		if (initialState) {
