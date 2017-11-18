@@ -11,20 +11,33 @@ class GraphicTemplateUpdate extends Component{
     constructor(props){
         super(props)
         this.state = {
-            template:null, loading: true, name:'', html:'',
+            template:null, loading: true, name:'', html:'', variablesComma:'',
             category:'', error:false, errorMessage:'', updating: false
         }
     }
     componentDidMount() {
         const template = this.props.templates.filter(t => t.id == this.props.match.params.template_id)[0]
-        const { name, html, category } = template
-        this.setState({name, html, category, template, loading:false})
+        const { name, html, category, variablesComma } = template
+        this.setState({name, html, category, template, variablesComma, loading:false})
         return
     }
     updateGraphicTemplate(){
         this.setState({updating:true})
-        const { name, html, category, template } = this.state
-        const updated = { name, html:ent.decode(html), category }
+        //variables comma check
+        const { name, html, category, template, variablesComma } = this.state
+        if( variablesComma.split(' ') > 1 ){
+            this.setState({error:true, errorMessage:'error! there was a space in your variables!'})
+            return
+        }
+        if( name == '' || html == '' || variablesComma == '' ){
+            this.setState({error:true, errorMessage:'Somethings Empty!'})
+            return 
+        }
+        if(this.checkVarsAndBody(html, variablesComma)){
+            this.setState({error: true, errorMessage:'Amount of variables in template HTML and variables input dont match!'})
+            return 
+        }
+        const updated = { name, html:ent.decode(html), category, variablesComma }
         this.props.updateTemplate(template, updated)
         .then(data => {
             this.props.history.push(`/template/show/${template.id}`)
@@ -34,6 +47,25 @@ class GraphicTemplateUpdate extends Component{
             this.setState({error:true, errorMessage:err.message,updating:false})
             return
         })
+    }
+    checkVarsAndBody(templateHtml, variablesComma){
+        let templateSplit = templateHtml.split('*')
+        let varSplit   = variablesComma.split(',')
+        let howManyVarsFound = 0
+        for( let x = 0 ; x < varSplit.length ; x++ ){
+            let indexNum = templateSplit.map( t => t ).indexOf(`${varSplit[x]}`)
+            if( indexNum >=0 ){
+                howManyVarsFound++
+            }
+        }
+        if( varSplit.length == howManyVarsFound ){
+            //falsifies the if statment from where the request comes from. so that the parent
+            //function can continue
+            return false
+        }else{
+            //validates the if statement and exists the parent function
+            return true 
+        }
     }
     render(){
         return(
@@ -66,6 +98,13 @@ class GraphicTemplateUpdate extends Component{
                                     value={this.state.html}
                                     onChange={ e => this.setState({ html: e.target.value }) }
                                 ></textarea>
+                                <label htmlFor="">List of PlaceHolder Variables: Comma seprated,no spaces, Same Spelling as Above</label>
+                                <input type="text" className="12u"
+                                    required={true} style={input}
+                                    placeholder="CommaSeperated,NoSpaces,WrittenJustLike^^^^"
+                                    value={this.state.variablesComma}
+                                    onChange={ e => this.setState({variablesComma: e.target.value}) }
+                                />
                                 <br/>
 
                                 {

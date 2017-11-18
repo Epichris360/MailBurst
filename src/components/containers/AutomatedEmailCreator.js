@@ -37,13 +37,12 @@ class AutomatedEmailCreator extends Component{
             this.setState({error:true, errorMessage:'error! there was a space in your variables!'})
             return
         }
-        if(this.checkVarsAndBody(emailBody, variablesComma)){
-            console.log('something wrong')
-            this.setState({error: true, errorMessage:'Amount of variables in email body and variables input dont match!'})
+        if( emailTitle == '' || emailBody == '' || variablesComma == '' ){
+            this.setState({error:true, errorMessage:'Somethings Empty!'})
             return 
         }
-        if( emailTitle == '' && emailBody == '' && variablesComma == '' ){
-            this.setState({error:true, errorMessage:'Somethings Empty!'})
+        if(this.checkVarsAndBody(emailBody, variablesComma)){
+            this.setState({error: true, errorMessage:'Amount of variables in email body and variables input dont match!'})
             return 
         }
         const emailTemplate = {

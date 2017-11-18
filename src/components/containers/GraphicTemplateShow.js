@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect }          from 'react-redux'
 import Loader               from './Loader'
-import ent                  from 'ent'
 import { backgroundShadow } from './Css'
 
 class GraphicTemplateShow extends Component{

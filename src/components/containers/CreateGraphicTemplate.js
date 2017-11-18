@@ -10,23 +10,57 @@ class CreateGraphicTemplate extends Component{
     constructor(props){
         super(props)
         this.state = {
-            name:'', html:'', error: false, errorMessage:'', category:'private'
+            name:'', html:'', error: false, errorMessage:'', category:'private',
+            variablesComma:''
         }
     }
-    submitGraphicTemplate(){
-        const { name, html, category } = this.state
+    submitGraphicTemplate(){ 
+        //variables comma check
+        //add loading bar
+        const { name, html, category, variablesComma } = this.state
+        if( variablesComma.split(' ') > 1 ){
+            this.setState({error:true, errorMessage:'error! there was a space in your variables!'})
+            return
+        }
+        if( name == '' || html == '' || variablesComma == '' ){
+            this.setState({error:true, errorMessage:'Somethings Empty!'})
+            return 
+        }
+        if(this.checkVarsAndBody(html, variablesComma)){
+            this.setState({error: true, errorMessage:'Amount of variables in template HTML and variables input dont match!'})
+            return 
+        }
         const user  = this.props.user
         const template = { name, html:ent.decode(html), 
-            template_id:v4(), user_id: user.id, category }
+            template_id:v4(), user_id: user.id, category, variablesComma }
         this.props.createTemplate( template )
         .then(data => {
-            this.props.history.push("/emails-list")
-            return
+            this.props.history.push("/templates-list")
+            return 
         })
         .catch(err => {
             this.setState({ error:true, errorMessage:err.message })
             return
         })
+    }
+    checkVarsAndBody(templateHtml, variablesComma){
+        let templateSplit = templateHtml.split('*')
+        let varSplit   = variablesComma.split(',')
+        let howManyVarsFound = 0
+        for( let x = 0 ; x < varSplit.length ; x++ ){
+            let indexNum = templateSplit.map( t => t ).indexOf(`${varSplit[x]}`)
+            if( indexNum >=0 ){
+                howManyVarsFound++
+            }
+        }
+        if( varSplit.length == howManyVarsFound ){
+            //falsifies the if statment from where the request comes from. so that the parent
+            //function can continue
+            return false
+        }else{
+            //validates the if statement and exists the parent function
+            return true 
+        }
     }
     render(){
         return(
@@ -45,7 +79,7 @@ class CreateGraphicTemplate extends Component{
                             style={input}
                             onChange={ e => this.setState({ name: e.target.value }) }
                         />
-                        <label htmlFor="">Body of Template:</label>
+                        <label htmlFor="">Body of Template. Remember The The PlaceHolders Must Be *Surrounded* by *Asterisk's*:</label>
                         <textarea cols="30" rows="10" className="12u"
                             required={true}
                             style={input}
@@ -53,6 +87,13 @@ class CreateGraphicTemplate extends Component{
                             onChange={ e => this.setState({ html: e.target.value }) }
                         ></textarea>
                         <br/>
+
+                        <label htmlFor="">List of PlaceHolder Variables: Comma seprated,no spaces, Same Spelling as Above</label>
+                        <input type="text" className="12u"
+                            required={true} style={input}
+                            placeholder="CommaSeperated,NoSpaces,WrittenJustLike^^^^"
+                            onChange={ e => this.setState({variablesComma: e.target.value}) }
+                        />
 
                         {
                             this.props.user.role == "admin" ? 

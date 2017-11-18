@@ -1,23 +1,38 @@
-import React, {Component}   from 'react'
-import { connect }          from 'react-redux'
-import Loader               from './Loader'
-import {Tabs, Tab}          from 'react-bootstrap'
-import JsAxios              from './JsAxios'
-import JsSuperAgent         from './JsSuperAgent'
-import { backgroundShadow } from './Css'
+import React, {Component}     from 'react'
+import { connect }            from 'react-redux'
+import Loader                 from './Loader'
+import {Tabs, Tab}            from 'react-bootstrap'
+import JsAxios                from './JsAxios'
+import JsSuperAgent           from './JsSuperAgent'
+import { backgroundShadow }   from './Css'
+import ShowModalEmailTemplate from './ShowModalEmailTemplate'
 
 
 class EmailTemplateShow extends Component{
     constructor(props){
         super(props)
         this.state = {
-            email:null, loading: true, template_id:''
+            email:null, loading: true, template_id:'', modalOpen: false, template:{html:'<h1>None Selected. Please Choose another template option!</h1>'}
         }
     }
     componentDidMount(){
         //will have to change if srr
         const email = this.props.emails.filter(e => e.email_id == this.props.match.params.email_id)[0]
         this.setState({email, loading:false})
+    }
+    switchModal(){
+        this.setState({modalOpen: !this.state.modalOpen})
+        return
+    }
+    templatePick(e){
+        const template = this.props.templates.filter(t => t.id == e.target.value)[0]
+        if(typeof template == "undefined"){
+            this.setState({template_id:e.target.value, 
+                template:{html:'<h1>None Selected. Please Choose another template option!</h1>'}})
+        }else{
+            this.setState({template_id: e.target.value, template})
+        }
+        return
     }
     render(){
         return(
@@ -61,7 +76,7 @@ class EmailTemplateShow extends Component{
                                 </div>
                                 <div className="col-md-12 col-sm-12 col-xs-12" style={{marginTop:'15px'}} >
                                     Which Template?: <select className="btn btn-default" 
-                                            onChange={e => this.setState({template_id: e.target.value}) }>
+                                            onChange={e => this.templatePick(e) }>
                                         <option value={''}>none</option>
                                         {
                                             this.props.templates.map( (t,i) => {
@@ -73,6 +88,13 @@ class EmailTemplateShow extends Component{
                                             })
                                         }
                                     </select>
+                                    &nbsp;&nbsp;
+                                    <button onClick={ this.switchModal.bind(this) } className="btn btn-primary" >
+                                        Modal!
+                                    </button>
+                                    <ShowModalEmailTemplate modalOpen={this.state.modalOpen} 
+                                        template={this.state.template}
+                                        switchModal={() => this.switchModal()} />
                                 </div>
                                 <div className="col-md-12 col-sm-12 col-xs-12" 
                                     style={{height:'10px',marginTop:'10px', marginBottom:'10px'}} >

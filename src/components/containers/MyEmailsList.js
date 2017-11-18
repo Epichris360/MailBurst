@@ -80,7 +80,7 @@ class MyEmailsList extends Component {
                         <div  >
                             <div className="col-md-12 col-sm-12 col-xs-12" 
                                 style={Object.assign({},{ padding:'10px'},backgroundShadow)}>
-                                <h2 className="col-md-6 col-sm-6 col-xs-10" >My Emails List: 
+                                <h2 className="col-md-6 col-sm-6 col-xs-10" >Emails List: 
                                     {this.state.private ? 'Private' : 'Public!'}
                                 </h2>
                                 <div className="col-md-6 col-sm-6 col-xs-12" 
